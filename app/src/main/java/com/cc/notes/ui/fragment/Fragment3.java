@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
@@ -22,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cc.notes.PersonalCenter.CircularImageView;
 import com.cc.notes.PersonalCenter.EditInformationActivity;
@@ -109,16 +111,27 @@ public class Fragment3 extends Fragment {
         tv_select_camera.setOnClickListener(new View.OnClickListener() {// 调用照相机
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);  //调用系统相机
-                startActivityForResult(intent, REQ);  //启动系统相机
+
+                /*动态获取权限*/
+                if (Build.VERSION.SDK_INT >= 23) {
+                    int checkCallPhonePermission = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA);
+                    if(checkCallPhonePermission != PackageManager.PERMISSION_GRANTED){
+                        ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.CAMERA},222);
+                        return;
+                    }else{
+                        startActivityForResult(intent, REQ);  //启动系统相机
+                    }
+                } else {
+                    startActivityForResult(intent, REQ);  //启动系统相机
+                }
+                //startActivityForResult(intent, REQ);  //启动系统相机
             }
         });
         dialog.setView(view);
         dialog.show();
 
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
