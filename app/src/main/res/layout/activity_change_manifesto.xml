@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/manifesto_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:contentInsetStart="0dp"
+        android:background="#28b5ba">
+
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:text="修改交友宣言"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <EditText
+        android:gravity="bottom"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/manifesto_text"
+        android:text="希望找个如你一般的人！"
+        android:layout_width="match_parent"
+        android:layout_height="150dp" />
+
+    <Button
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/manifesto_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/save_shope"
+        android:text="保\t\t存"
+        android:textColor="#fff"
+        android:textSize="20dp" />
+
+</LinearLayout>

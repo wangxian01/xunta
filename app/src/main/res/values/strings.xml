@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">寻她</string>
+    <string name="title_activity_main"></string>
+
+    <string name="menu_bottom_navigation1">one</string>
+    <string name="menu_bottom_navigation2">two</string>
+    <string name="menu_bottom_navigation3">three</string>
+</resources>

@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F4F5F6">
+
+    <LinearLayout
+        android:id="@+id/personal_background"
+        android:orientation="vertical"
+        android:background="#28b5ba"
+        android:layout_width="match_parent"
+        android:layout_height="250dp">
+
+        <com.cc.notes.PersonalCenter.CircularImageView
+            android:layout_marginTop="35dp"
+            android:layout_gravity="center"
+            android:id="@+id/personal_portrait"
+            android:src="@drawable/touxiang"
+            android:layout_width="130dp"
+            android:layout_height="130dp" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/personal_name"
+            android:text="liny"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_gravity="center"
+            android:layout_marginTop="3dp"
+            android:id="@+id/personal_manifesto"
+            android:text="希望找个如你一般的人！"
+            android:textSize="12dp"
+            android:textStyle="italic"
+            android:textColor="#020202"
+            android:maxEms="10"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:background="#fff"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal"
+        android:elevation="5dp"
+        android:layout_marginTop="-23dp"
+        android:layout_width="match_parent"
+        android:layout_height="46dp">
+
+    <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:src="@drawable/xingbie"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="3dp"/>
+
+            <TextView
+                android:gravity="center"
+                android:text="性别:"
+                android:textSize="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:gravity="center"
+                android:id="@+id/personal_sex"
+                android:text="女"
+                android:textSize="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:src="@drawable/shengao"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="3dp"/>
+
+        <TextView
+            android:gravity="center"
+            android:text="身高:"
+            android:textSize="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/personal_height"
+            android:gravity="center"
+            android:text="170 cm"
+            android:textSize="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:src="@drawable/nianling2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="3dp"/>
+
+            <TextView
+                android:gravity="center"
+                android:text="年龄:"
+                android:textSize="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/personal_birthday"
+                android:gravity="center"
+                android:text="18岁"
+                android:textSize="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="#fff"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical"
+        android:elevation="5dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:src="@drawable/gerenjianj"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:textSize="12dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="个人简介:"/>
+
+    </LinearLayout>
+
+        <View
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="#c6c6c6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp">
+        </View>
+
+    <TextView
+        android:id="@+id/personal_introduce"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:text="我不算漂亮,但看着也算舒服,所以你呢,也不用有多帅,看着顺眼就行了.我个头不算高,但穿高跟鞋也能挤进170的队伍 所以你呢 比我穿高跟鞋再高点就行了.我身材不算好,但比例绝对标准,所以你呢,不用身材有多好 比例标准就行了.我收入不高,但养活自己没问题 所以你呢 如果哪天我不幸失业了 能养活咱俩就行了"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="#fff"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical"
+        android:elevation="5dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/personal_mysc"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="25dp">
+
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:id="@+id/personal_scimg"
+                android:layout_gravity="center|left"
+                android:src="@drawable/shoucang"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_toRightOf="@id/personal_scimg"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center|left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的收藏"/>
+
+            <ImageView
+                android:id="@+id/personal_myscnext"
+                android:layout_alignParentRight="true"
+                android:gravity="center|right"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/tiaozhuan"
+                android:layout_width="20dp"
+                android:layout_height="18dp" />
+        </RelativeLayout>
+
+
+        <View
+            android:layout_marginTop="-5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="#c6c6c6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp">
+        </View>
+
+
+        <RelativeLayout
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/personal_mybj"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="25dp">
+
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:id="@+id/personal_bjimg"
+                android:layout_gravity="center|left"
+                android:src="@drawable/bianjigr"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_toRightOf="@id/personal_bjimg"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center|left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="编辑个人信息"/>
+
+            <ImageView
+                android:id="@+id/personal_mybjnext"
+                android:layout_alignParentRight="true"
+                android:gravity="center|right"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/tiaozhuan"
+                android:layout_width="20dp"
+                android:layout_height="18dp" />
+        </RelativeLayout>
+
+
+        <View
+            android:layout_marginTop="-5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="#c6c6c6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp">
+        </View>
+    </LinearLayout>
+
+
+</LinearLayout>
