@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
+    buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "com.note.cc.notes"
         minSdkVersion 19
@@ -10,12 +11,16 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+
 }
 
 dependencies {
@@ -42,5 +47,8 @@ dependencies {
     /*图片处理*/
     compile 'com.jph.takephoto:takephoto_library:4.0.3'
     compile 'com.yanzhenjie:permission:1.0.5'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    //图片加载库
+    implementation 'com.zhy:okhttputils:2.0.0'
 
 }

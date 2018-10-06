@@ -55,12 +55,9 @@
         <activity android:name="com.cc.notes.PersonalCenter.PersonalHomeActivity" />
         <activity android:name="com.cc.notes.PersonalCenter.EditInformationActivity" />
         <activity android:name="com.cc.notes.PersonalCenter.ChangeManifestoActivity" />
-        <activity android:name="com.cc.notes.XunHome.XunHomeActivity">
-
-        </activity>
-        <activity android:name="com.cc.notes.PersonalCenter.MapTestActivity">
-
-        </activity>
+        <activity android:name="com.cc.notes.XunHome.XunHomeActivity"></activity>
+        <activity android:name="com.cc.notes.PersonalCenter.MapTestActivity"></activity>
+        <activity android:name="com.cc.notes.ui.activity.ChatActivity"/>
 
     </application>
 
