@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cc.notes.ui.activity.RegisteredActivity02">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/return01"
+            android:id="@+id/registered_return"/>
+
+        <TextView
+            android:layout_marginRight="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="注  册"/>
+
+    </LinearLayout>
+
+
+
+
+
+    <LinearLayout
+        android:background="#fff"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:text="性别"
+            android:textSize="30dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+        <ImageButton
+            android:id="@+id/registered_man"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@android:color/background_light"
+            android:src="@drawable/man" />
+            <ImageButton
+                android:id="@+id/registered_Aliens"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@android:color/background_light"
+                android:layout_marginLeft="130dp"
+                android:src="@drawable/aliens__change" />
+            <ImageButton
+                android:id="@+id/registered_woman"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="260dp"
+                android:background="@android:color/background_light"
+                android:src="@drawable/woman" />
+        </RelativeLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:text="男人"
+            android:textSize="25dp" />
+    <TextView
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="120dp"
+        android:text="外星人"
+        android:textAlignment="viewStart"
+        android:textSize="25dp" />
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="265dp"
+        android:text="女人"
+        android:textAlignment="viewStart"
+        android:textSize="25dp" />
+</RelativeLayout>
+        <Button
+            android:id="@+id/registered_button02"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/login_shope"
+            android:text="下\t一\t步"
+            android:textColor="#fff"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

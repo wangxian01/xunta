@@ -44,7 +44,8 @@
             android:name="com.cc.notes.ui.activity.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.cc.notes.ui.activity.FirsthomeActivity">
+        <activity android:name="com.cc.notes.ui.activity.FirsthomeActivity"/>
+        <activity android:name="com.cc.notes.ui.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -59,6 +60,12 @@
         <activity android:name="com.cc.notes.PersonalCenter.MapTestActivity"></activity>
         <activity android:name="com.cc.notes.ui.activity.ChatActivity"/>
         <activity android:name="com.cc.notes.PersonalCenter.ChangeIntroduce" />
+        <activity android:name="com.cc.notes.ui.activity.RegisteredActivity"></activity>
+        <activity android:name="com.cc.notes.ui.activity.RegisteredActivity01"></activity>
+        <activity android:name="com.cc.notes.ui.activity.RegisteredActivity02"></activity>
+        <activity android:name="com.cc.notes.ui.activity.RegisteredActivity03"></activity>
+
+
     </application>
 
 </manifest>
