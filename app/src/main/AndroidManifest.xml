@@ -58,7 +58,7 @@
         <activity android:name="com.cc.notes.XunHome.XunHomeActivity"></activity>
         <activity android:name="com.cc.notes.PersonalCenter.MapTestActivity"></activity>
         <activity android:name="com.cc.notes.ui.activity.ChatActivity"/>
-
+        <activity android:name="com.cc.notes.PersonalCenter.ChangeIntroduce" />
     </application>
 
 </manifest>

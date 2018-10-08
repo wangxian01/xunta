@@ -96,7 +96,7 @@ public class Fragment1 extends Fragment {
     }
 
     private void initDatas() {
-        list.add(R.drawable.img_avatar_01);
+        list.add(R.drawable.touxiang);
         list.add(R.drawable.img_avatar_02);
         list.add(R.drawable.img_avatar_03);
         list.add(R.drawable.img_avatar_04);
