@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/xunta.iml" filepath="$PROJECT_DIR$/xunta.iml" />
+      <module fileurl="file://F:\xunta\app\app.iml" filepath="F:\xunta\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/xunta.iml" filepath="$PROJECT_DIR$/.idea/xunta.iml" />
+      <module fileurl="file://F:\xunta\xunta.iml" filepath="F:\xunta\xunta.iml" />
     </modules>
   </component>
 </project>
