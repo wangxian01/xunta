@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:background="#fa8385"
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#e7f6f5"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -10,26 +10,26 @@
         android:id="@+id/toolbar_normal"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#fa8385">
-
+        android:background="#fbf1ec">
+<!--
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@mipmap/ic_launcher_round"/>
+            android:src="@mipmap/ic_launcher_round"/>-->
 
         <TextView
             android:fontFamily="casual"
-            android:layout_marginStart="90dp"
+            android:layout_marginStart="120dp"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:text="全部信息"
+            android:text="关注列表"
             android:gravity="center"/>
-
+<!--
         <ImageView
             android:layout_marginStart="80dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@mipmap/ic_launcher_round"/>
+            android:src="@mipmap/ic_launcher_round"/>-->
 
     </android.support.v7.widget.Toolbar>
 

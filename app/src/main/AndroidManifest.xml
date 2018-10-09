@@ -26,10 +26,11 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -40,6 +41,7 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="0402e6aabc0b672e35f01db17157ed55" />
+
         <activity
             android:name="com.cc.notes.ui.activity.MainActivity"
             android:label="@string/title_activity_main"
@@ -55,10 +57,17 @@
         <activity android:name="com.cc.notes.PersonalCenter.PersonalHomeActivity" />
         <activity android:name="com.cc.notes.PersonalCenter.EditInformationActivity" />
         <activity android:name="com.cc.notes.PersonalCenter.ChangeManifestoActivity" />
-        <activity android:name="com.cc.notes.XunHome.XunHomeActivity"></activity>
-        <activity android:name="com.cc.notes.PersonalCenter.MapTestActivity"></activity>
-        <activity android:name="com.cc.notes.ui.activity.ChatActivity"/>
-
+        <activity android:name="com.cc.notes.XunHome.XunHomeActivity" />
+        <activity android:name="com.cc.notes.PersonalCenter.MapTestActivity" />
+        <activity android:name="com.cc.notes.ui.activity.ChatActivity" />
+        <activity
+            android:name="com.cc.notes.ui.activity.PersonalDetails"
+            android:label="@string/title_activity_personal_details"
+            android:theme="@style/AppTheme.NoActionBar" />
+     <activity
+            android:name="com.cc.notes.ui.activity.IntimacyActivity"
+            android:label="@string/title_activity_intimacy"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

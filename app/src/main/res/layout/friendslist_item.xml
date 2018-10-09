@@ -13,12 +13,11 @@
         android:orientation="vertical"
         android:layout_weight="5">
 
-        <com.cc.notes.utils.CircularImageView
-            android:id="@+id/roundImageView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@mipmap/ic_launcher"
-            />
+        <com.cc.notes.PersonalCenter.CircularImageView
+        android:id="@+id/roundImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        />
 
     </LinearLayout>
 

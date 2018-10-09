@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.cc.notes.PersonalCenter.CircularImageView;
 import com.cc.notes.model.UserInfo;
-import com.cc.notes.utils.CircularImageView;
 import com.notes.cc.notes.R;
 import com.squareup.picasso.Picasso;
 
@@ -57,7 +57,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
     @Override
     public void onBindViewHolder(MyRecyclerViewAdapter.ViewHolder holder, int position) {
-        System.out.println(friendinfo.size());
         holder.mText.setText(friendinfo.get(position).getNickname());
         holder.ttext.setText(friendinfo.get(position).getSignature());
         Picasso.with(mcontext).load("http://120.79.180.18/images/"+friendinfo.get(position).getAvatar_name()+".jpg").into(holder.touxiang);

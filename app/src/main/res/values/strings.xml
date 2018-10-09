@@ -5,4 +5,6 @@
     <string name="menu_bottom_navigation1">one</string>
     <string name="menu_bottom_navigation2">two</string>
     <string name="menu_bottom_navigation3">three</string>
+    <string name="title_activity_personal_details">PersonalDetails</string>
+    <string name="title_activity_intimacy">IntimacyActivity</string>
 </resources>

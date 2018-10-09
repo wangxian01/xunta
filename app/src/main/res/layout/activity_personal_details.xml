@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cc.notes.ui.activity.PersonalDetails"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:id="@+id/diyizhang"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:src="@drawable/linyuner1"/>
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:id="@+id/dierzhang"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:src="@drawable/linyuner2"/>
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:id="@+id/disanzhang"
+            android:layout_marginStart="-160dp"
+            android:layout_marginTop="75dp"
+            android:layout_width="160dp"
+            android:layout_height="75dp"
+            android:src="@drawable/linyuner3"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="100dp"
+        android:layout_height="match_parent">
+
+        <com.cc.notes.PersonalCenter.CircularImageView
+            android:id="@+id/touxiang2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="180dp"
+            android:src="@drawable/touxiang"
+            />
+
+<TextView
+    android:layout_marginTop="10dp"
+    android:layout_gravity="center"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="我是你的关注"/>
+
+<!--        <ImageView
+            android:layout_marginTop="160dp"
+            android:layout_gravity="center"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@mipmap/ic_launcher_round"/>-->
+
+<!--        <com.cc.notes.PersonalCenter.CircularImageView
+            android:layout_marginTop="160dp"
+            android:layout_gravity="center"
+            android:id="@+id/roundImageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@mipmap/ic_launcher"
+            />-->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="#50FFFFFF"
+        android:layout_width="261dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="-417dp"
+        android:orientation="vertical"
+        android:padding="40dp">
+
+        <!--中间的布局-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="账号  "/>
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="13795971992"/>
+
+            <LinearLayout
+                android:layout_marginLeft="-120dp"
+                android:layout_marginTop="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorTextGrey"/>
+
+
+            <TextView
+                android:layout_marginLeft="-180dp"
+                android:layout_marginTop="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="性别  "/>
+
+
+            <TextView
+                android:layout_marginTop="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="女"/>
+
+            <LinearLayout
+                android:layout_marginLeft="-120dp"
+                android:layout_marginTop="90dp"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorTextGrey"/>
+
+
+            <TextView
+                android:layout_marginLeft="-180dp"
+                android:layout_marginTop="100dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="地址  "/>
+
+
+            <TextView
+                android:layout_marginTop="100dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="四川泸州"/>
+
+
+            <LinearLayout
+                android:layout_marginLeft="-120dp"
+                android:layout_marginTop="130dp"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorTextGrey"/>
+
+
+            <TextView
+                android:layout_marginLeft="-180dp"
+                android:layout_marginTop="140dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="职业  "/>
+
+
+            <TextView
+                android:layout_marginTop="140dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="女主播"/>
+
+
+            <LinearLayout
+                android:layout_marginLeft="-120dp"
+                android:layout_marginTop="170dp"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorTextGrey"/>
+
+            <TextView
+                android:layout_marginLeft="-180dp"
+                android:layout_marginTop="180dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我对你说  "/>
+
+
+            <TextView
+                android:layout_marginStart="-60dp"
+                android:layout_marginTop="220dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="既不回头，何必不忘;既然无缘，何需誓言;今日种种，似水无痕;明日何夕，君已陌路"/>
+
+
+            <LinearLayout
+                android:layout_marginLeft="-200dp"
+                android:layout_marginTop="300dp"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorTextGrey"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

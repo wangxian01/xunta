@@ -31,7 +31,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     //noinspection GradleCompatible
-   // implementation 'com.android.support:recyclerview-v7:27.1.1'
+    // implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation 'com.android.support:percent:27.0.1'
     implementation 'com.android.support:appcompat-v7:27.0.1'
     implementation 'com.android.support:design:27.0.1'
@@ -51,4 +51,5 @@ dependencies {
     //图片加载库
     implementation 'com.zhy:okhttputils:2.0.0'
 
+    compile project(path: ':specialprogressbarlibrary')
 }
