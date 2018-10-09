@@ -1,6 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="Orientation">
 
-</android.support.constraint.ConstraintLayout>
+
+    <RelativeLayout
+
+        android:layout_alignTop="@+id/image_top"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image_top"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:src="@drawable/img_avatar_06" />
+
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="260dp"
+            android:text="小姐姐"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_name"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/shape_age"
+            android:gravity="center"
+            android:text="♀ 23"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_constellation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_name"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/tv_age"
+            android:background="@drawable/shape_constellation"
+            android:gravity="center"
+            android:text="狮子座"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/jianjie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_age"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="我值得你等"
+            android:textColor="#aeacac" />
+        <View
+            android:id="@+id/view1"
+            android:layout_marginTop="25dp"
+            android:layout_alignTop="@+id/jianjie"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#808181"/>
+
+        <LinearLayout
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ede9df"
+            android:layout_alignTop="@+id/view1"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="我的信息"/>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/xingzuo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="星座"
+            android:layout_alignTop="@+id/line1"
+            android:layout_marginTop="65dp"
+            android:textColor="#d3c8c8"/>
+
+        <TextView
+            android:id="@+id/whatxingzuo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:text="狮子座"
+            android:layout_alignTop="@+id/line1"
+            android:layout_marginTop="65dp"
+            android:textColor="#817f7f"/>
+
+        <View
+            android:id="@+id/view2"
+            android:layout_marginTop="25dp"
+            android:layout_alignTop="@+id/xingzuo"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#808181"/>
+
+
+        <TextView
+            android:id="@+id/hangye"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="行业"
+            android:layout_alignTop="@+id/view2"
+            android:layout_marginTop="10dp"
+            android:textColor="#d3c8c8"/>
+
+
+        <TextView
+            android:id="@+id/whathangye"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:text="文化/艺术"
+            android:layout_alignTop="@+id/view2"
+            android:layout_marginTop="10dp"
+            android:textColor="#808181"/>
+
+        <View
+            android:id="@+id/view3"
+            android:layout_marginTop="25dp"
+            android:layout_alignTop="@+id/hangye"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#808181"/>
+
+        <TextView
+            android:id="@+id/gongzuolingyu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="工作领域"
+            android:layout_alignTop="@+id/view3"
+            android:layout_marginTop="10dp"
+            android:textColor="#d3c8c8"/>
+
+        <TextView
+            android:id="@+id/whatgongzuolingyu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:text="作家/编剧/撰稿人"
+            android:layout_alignTop="@+id/view3"
+            android:layout_marginTop="10dp"
+            android:textColor="#808181"/>
+
+    </RelativeLayout>
+
+
+
+
+
+</LinearLayout>
