@@ -9,13 +9,25 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.cc.notes.model.UserBean;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.notes.cc.notes.R;
+import com.squareup.okhttp.MediaType;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -23,38 +35,42 @@ private TextView mLoginRegistered;
 private Button mLoginButton;
 private EditText mUserName;
 private EditText mUserPassword;
+private boolean aBoolean;
+private OkHttpClient client = new OkHttpClient();
+public static final MediaType JSON
+            = MediaType.parse("application/json; charset=utf-8");
 
 private String username, password;
 
-    @SuppressLint("HandlerLeak")
-    private Handler mHandler = new Handler() {      //接收其他子线程的消息
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            switch (msg.what) {
-                case 0:
-                    new AlertDialog.Builder(LoginActivity.this).setMessage("用户登录失败，账号或密码错误").create().show();
-                    break;
-
-                case 1:
-                    //获取sharedPreferences对象
-                    SharedPreferences sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
-                    //获取editor对象
-                    @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
-                    editor.putBoolean("islogin",true);
-                    editor.putString("username",msg.obj.toString() );
-                    editor.apply();
-
-                    new AlertDialog.Builder(LoginActivity.this).setMessage( "欢迎  "+ msg.obj.toString() ).create().show();
-
-                    Intent intent = new Intent(LoginActivity.this, FirsthomeActivity.class);
-                    intent.putExtra("username",msg.obj.toString());
-                    startActivity(intent);
-
-                    break;
-            }
-        }
-    };
+//    @SuppressLint("HandlerLeak")
+//    private Handler mHandler = new Handler() {      //接收其他子线程的消息
+//        @Override
+//        public void handleMessage(Message msg) {
+//            super.handleMessage(msg);
+//            switch (msg.what) {
+//                case 0:
+//                    new AlertDialog.Builder(LoginActivity.this).setMessage("用户登录失败，账号或密码错误").create().show();
+//                    break;
+//
+//                case 1:
+//                    //获取sharedPreferences对象
+//                    SharedPreferences sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
+//                    //获取editor对象
+//                    @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
+//                    editor.putBoolean("islogin",true);
+//                    editor.putString("username",msg.obj.toString() );
+//                    editor.apply();
+//
+//                    new AlertDialog.Builder(LoginActivity.this).setMessage( "欢迎  "+ msg.obj.toString() ).create().show();
+//
+//                    Intent intent = new Intent(LoginActivity.this, FirsthomeActivity.class);
+//                    intent.putExtra("username",msg.obj.toString());
+//                    startActivity(intent);
+//
+//                    break;
+//            }
+//        }
+//    };
 
     @SuppressLint("MissingSuperCall")
     protected void onCreate(final Bundle savedInstanceState) {
@@ -136,8 +152,62 @@ private String username, password;
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, FirsthomeActivity.class);
                 startActivity(intent);
+//                Thread thread = new Thread(){
+//                    @Override
+//                    public void run() {
+//                        super.run();
+//                        try {
+//                            String restult = post("http://"+getString(R.string.netip)+":8080/XunTa/LoginServlet","");
+//                            Gson gson = new Gson();
+//                            ArrayList<UserBean> userBeans = gson.fromJson(restult,new TypeToken<ArrayList<UserBean>>() {
+//                            }.getType());
+//                            for(int i = 0  ;i < userBeans.size();i++){
+//                                if(String.valueOf(mUserName.getText()).equals(userBeans.get(i).getUserid().trim()) && String.valueOf(mUserPassword.getText()).equals(userBeans.get(i).getPassword().trim())){
+//                                    aBoolean = true;
+//                                    break;
+//                                }else {
+//                                    aBoolean = false;
+//
+//                                }
+//
+//                            }
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                };
+//                thread.start();
+//                try {
+//                    thread.join();
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                if (aBoolean == true){
+//                    Intent intent = new Intent(LoginActivity.this, FirsthomeActivity.class);
+//                    startActivity(intent);
+//                }else{
+//                    new AlertDialog.Builder(LoginActivity.this)
+//                            .setTitle("用户名或密码有误！")
+//                            .setMessage("请输入！")
+//                            .setPositiveButton("确定", null)
+//                            .show();
+//                }
             }
         });
 
 }
+
+    /**
+     * post请求*/
+    private String post(String url, String json) throws IOException {
+        RequestBody body = RequestBody.create(JSON, json);
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+        Response response = client.newCall(request).execute();
+        return response.body().string();
+    }
+
 }

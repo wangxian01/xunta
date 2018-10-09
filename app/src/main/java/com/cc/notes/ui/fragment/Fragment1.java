@@ -1,5 +1,6 @@
 package com.cc.notes.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,8 @@ import com.cc.notes.XunHome.CardConfig;
 import com.cc.notes.XunHome.CardItemTouchHelperCallback;
 import com.cc.notes.XunHome.CardLayoutManager;
 import com.cc.notes.XunHome.OnSwipeListener;
+import com.cc.notes.adapter.MyAdapter;
+import com.cc.notes.ui.activity.HomeSecondActivity;
 import com.notes.cc.notes.R;
 
 import java.util.ArrayList;
@@ -26,6 +29,8 @@ import java.util.List;
 public class Fragment1 extends Fragment {
 
     private List<Integer> list = new ArrayList<>();
+    private MyAdapter.OnItemClickListener listener;
+    private MyAdapter adapter;
 
     public Fragment1() {
     }
@@ -48,13 +53,20 @@ public class Fragment1 extends Fragment {
         initDatas();
         final RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(new MyAdapters());
+        adapter = new MyAdapter(list,getActivity());
+        recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(int position) {
+                startActivity(new Intent(getActivity(), HomeSecondActivity.class));
+            }
+        });
         CardItemTouchHelperCallback cardCallback = new CardItemTouchHelperCallback(recyclerView.getAdapter(), list);
         cardCallback.setOnSwipedListener(new OnSwipeListener<Integer>() {
 
             @Override
             public void onSwiping(RecyclerView.ViewHolder viewHolder, float ratio, int direction) {
-                MyAdapters.MyViewHolder myHolder = (MyAdapters.MyViewHolder) viewHolder;
+                MyAdapter.MyViewHolder myHolder = (MyAdapter.MyViewHolder) viewHolder;
                 viewHolder.itemView.setAlpha(1 - Math.abs(ratio) * 0.2f);
                 if (direction == CardConfig.SWIPING_LEFT) {
                     myHolder.dislikeImageView.setAlpha(Math.abs(ratio));
@@ -68,7 +80,7 @@ public class Fragment1 extends Fragment {
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, Integer o, int direction) {
-                MyAdapters.MyViewHolder myHolder = (MyAdapters.MyViewHolder) viewHolder;
+                MyAdapter.MyViewHolder myHolder = (MyAdapter.MyViewHolder) viewHolder;
                 viewHolder.itemView.setAlpha(1f);
                 myHolder.dislikeImageView.setAlpha(0f);
                 myHolder.likeImageView.setAlpha(0f);
@@ -105,39 +117,5 @@ public class Fragment1 extends Fragment {
         list.add(R.drawable.img_avatar_07);
     }
 
-    private class MyAdapters extends RecyclerView.Adapter {
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
-            return new MyViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            ImageView avatarImageView = ((MyViewHolder) holder).avatarImageView;
-            avatarImageView.setImageResource(list.get(position));
-        }
-
-        @Override
-        public int getItemCount() {
-            //Log.e("测试：", "数量为："+String.valueOf(list.size()));
-            return list.size();
-        }
-
-        class MyViewHolder extends RecyclerView.ViewHolder {
-
-            ImageView avatarImageView;
-            ImageView likeImageView;
-            ImageView dislikeImageView;
-
-            MyViewHolder(View itemView) {
-                super(itemView);
-                avatarImageView = (ImageView) itemView.findViewById(R.id.iv_avatar);
-                likeImageView = (ImageView) itemView.findViewById(R.id.iv_like);
-                dislikeImageView = (ImageView) itemView.findViewById(R.id.iv_dislike);
-            }
-
-        }
-    }
 
 }
