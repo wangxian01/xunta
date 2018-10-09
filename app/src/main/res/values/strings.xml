@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">寻她</string>
+    <string name="app_name">寻他</string>
     <string name="title_activity_main"></string>
 
-    <string name="menu_bottom_navigation1">one</string>
-    <string name="menu_bottom_navigation2">two</string>
-    <string name="menu_bottom_navigation3">three</string>
+    <string name="menu_bottom_navigation1">推荐</string>
+    <string name="menu_bottom_navigation2">好友</string>
+    <string name="menu_bottom_navigation3">我的</string>
+
+    <string name="netip">172.17.136.111</string>
 </resources>

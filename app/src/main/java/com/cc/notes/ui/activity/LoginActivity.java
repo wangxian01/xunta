@@ -9,13 +9,25 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.cc.notes.model.UserBean;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.notes.cc.notes.R;
+import com.squareup.okhttp.MediaType;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -23,6 +35,10 @@ private TextView mLoginRegistered;
 private Button mLoginButton;
 private EditText mUserName;
 private EditText mUserPassword;
+private boolean aBoolean;
+private OkHttpClient client = new OkHttpClient();
+public static final MediaType JSON
+            = MediaType.parse("application/json; charset=utf-8");
 
 private String username, password;
 
@@ -134,10 +150,64 @@ private String username, password;
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, FirsthomeActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(LoginActivity.this, FirsthomeActivity.class);
+//                startActivity(intent);
+                Thread thread = new Thread(){
+                    @Override
+                    public void run() {
+                        super.run();
+                        try {
+                            String restult = post("http://"+getString(R.string.netip)+":8080/XunTa/LoginServlet","");
+                            Gson gson = new Gson();
+                            ArrayList<UserBean> userBeans = gson.fromJson(restult,new TypeToken<ArrayList<UserBean>>() {
+                            }.getType());
+                            for(int i = 0  ;i < userBeans.size();i++){
+                                if(String.valueOf(mUserName.getText()).equals(userBeans.get(i).getUserid().trim()) && String.valueOf(mUserPassword.getText()).equals(userBeans.get(i).getPassword().trim())){
+                                    aBoolean = true;
+                                    break;
+                                }else {
+                                    aBoolean = false;
+
+                                }
+
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                thread.start();
+                try {
+                    thread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                if (aBoolean == true){
+                    Intent intent = new Intent(LoginActivity.this, FirsthomeActivity.class);
+                    startActivity(intent);
+                }else{
+                    new AlertDialog.Builder(LoginActivity.this)
+                            .setTitle("用户名或密码有误！")
+                            .setMessage("请输入！")
+                            .setPositiveButton("确定", null)
+                            .show();
+                }
             }
         });
 
 }
+
+    /**
+     * post请求*/
+    private String post(String url, String json) throws IOException {
+        RequestBody body = RequestBody.create(JSON, json);
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+        Response response = client.newCall(request).execute();
+        return response.body().string();
+    }
+
 }
