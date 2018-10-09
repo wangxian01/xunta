@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:background="@mipmap/backgrond"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cc.notes.ui.activity.RegisteredActivity">
+    tools:context="com.cc.notes.ui.activity.RegisteredActivity"
+    >
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:background="#fff"
+
         android:layout_height="wrap_content">
 
         <ImageView
@@ -34,7 +36,6 @@
     </LinearLayout>
 
     <LinearLayout
-        android:background="#fff"
         android:paddingRight="20dp"
         android:paddingLeft="20dp"
         android:layout_marginTop="20dp"
@@ -51,13 +52,12 @@
             android:maxLines="1" />
 
 
-
         <Button
             android:id="@+id/registered_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@drawable/login_shope"
+            android:background="@color/cardview_shadow_start_color"
             android:text="下\t一\t步"
             android:textColor="#fff"
             android:textSize="20dp" />

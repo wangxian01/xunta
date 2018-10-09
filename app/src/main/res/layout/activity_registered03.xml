@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:background="@mipmap/backgrond"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,7 +11,6 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:background="#fff"
         android:layout_height="wrap_content">
 
         <ImageView
@@ -38,7 +38,6 @@
 
 
     <LinearLayout
-        android:background="#fff"
         android:paddingRight="20dp"
         android:paddingLeft="20dp"
         android:layout_marginTop="20dp"
@@ -52,8 +51,8 @@
             android:layout_height="61dp"
             android:layout_marginTop="10dp"
             android:hint="出生年月："
+            android:textColor="#fff"
             android:maxLines="1" />
-
 
 
         <Button
@@ -61,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@drawable/login_shope"
+            android:background="@color/cardview_shadow_start_color"
             android:text="完\t\t成"
             android:textColor="#fff"
             android:textSize="20dp" />

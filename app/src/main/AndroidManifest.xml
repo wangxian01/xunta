@@ -48,12 +48,21 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name="com.cc.notes.ui.activity.FirsthomeActivity">
+
+        </activity>
+        <activity android:name="com.cc.notes.ui.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.cc.notes.ui.activity.RegisteredActivity"/>
+        <activity android:name="com.cc.notes.ui.activity.RegisteredActivity01"/>
+        <activity android:name="com.cc.notes.ui.activity.RegisteredActivity02">
+
+        </activity>
+        <activity android:name="com.cc.notes.ui.activity.RegisteredActivity03"/>
         <activity android:name="com.cc.notes.test" />
         <activity android:name="com.cc.notes.PersonalCenter.PersonalHomeActivity"
             tools:ignore="InnerclassSeparator" />

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     android:orientation="vertical"
-    android:background="#ffff"
+    android:background="@mipmap/backgrond"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,8 +11,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:background="#30DEE5">
+        android:layout_height="250dp">
 
         <ImageView
             android:layout_marginLeft="15dp"
@@ -22,12 +21,11 @@
             android:layout_height="30dp"
             android:src="@mipmap/wreturn"/>
 
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="-20dp"
-            android:src="@mipmap/loginlogo"
-            android:layout_gravity="center"/>
+        <!--<ImageView-->
+            <!--android:layout_width="120dp"-->
+            <!--android:layout_height="120dp"-->
+            <!--android:layout_marginTop="-20dp"-->
+            <!--android:layout_gravity="center"/>-->
 
     </LinearLayout>
 
@@ -74,6 +72,7 @@
                     android:id="@+id/remember_password"/>
 
                 <TextView
+                    android:textColor="#fff"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="记住密码"/>
@@ -86,6 +85,7 @@
                 android:id="@+id/login_registered"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#fff"
                 android:text="注册"/>
 
             <TextView
@@ -95,6 +95,7 @@
                 android:gravity="right"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#fff"
                 android:text="忘了密码？"/>
         </LinearLayout>
 
@@ -103,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/login_shope"
+            android:background="@color/cardview_shadow_start_color"
             android:text="登\t\t录"
             android:textColor="#fff"
             android:textSize="15dp" />
