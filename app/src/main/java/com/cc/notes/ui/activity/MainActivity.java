@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     private void inint() {
         lists= new ArrayList<>();
         for(String string : strings){
