@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.notes.cc.notes">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -54,7 +55,8 @@
             </intent-filter>
         </activity>
         <activity android:name="com.cc.notes.test" />
-        <activity android:name="com.cc.notes.PersonalCenter.PersonalHomeActivity" />
+        <activity android:name="com.cc.notes.PersonalCenter.PersonalHomeActivity"
+            tools:ignore="InnerclassSeparator" />
         <activity android:name="com.cc.notes.PersonalCenter.EditInformationActivity" />
         <activity android:name="com.cc.notes.PersonalCenter.ChangeManifestoActivity" />
         <activity android:name="com.cc.notes.XunHome.XunHomeActivity" />
@@ -68,6 +70,8 @@
             android:name="com.cc.notes.ui.activity.IntimacyActivity"
             android:label="@string/title_activity_intimacy"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity android:name="com.cc.notes.ui.activity.HomeSecondActivity"/>
     </application>
 
 </manifest>

@@ -10,7 +10,7 @@
         android:id="@+id/toolbar_normal"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#fbf1ec">
+        android:background="#f9fbfb">
 <!--
         <ImageView
             android:layout_width="40dp"

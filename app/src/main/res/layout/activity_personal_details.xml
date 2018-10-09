@@ -48,7 +48,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:layout_marginTop="180dp"
+            android:layout_marginTop="100dp"
             android:src="@drawable/touxiang"
             />
 
@@ -75,6 +75,20 @@
             android:src="@mipmap/ic_launcher"
             />-->
 
+
+
+        <ImageButton
+            android:layout_marginTop="50dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            />
+
+        <ImageButton
+            android:layout_marginTop="-50dp"
+            android:layout_marginStart="50dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -205,6 +219,11 @@
 
         </LinearLayout>
 
+
+
+
+
     </LinearLayout>
+
 
 </LinearLayout>
