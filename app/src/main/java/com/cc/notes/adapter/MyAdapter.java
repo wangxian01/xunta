@@ -59,7 +59,7 @@ public class MyAdapter extends RecyclerView.Adapter {
         public ImageView dislikeImageView;
 
 
-        MyViewHolder(View itemView) {
+        public  MyViewHolder(View itemView) {
             super(itemView);
             avatarImageView = (ImageView) itemView.findViewById(R.id.iv_avatar);
             likeImageView = (ImageView) itemView.findViewById(R.id.iv_like);

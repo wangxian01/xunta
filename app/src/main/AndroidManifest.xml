@@ -64,6 +64,7 @@
         <activity android:name="com.cc.notes.ui.activity.RegisteredActivity01"></activity>
         <activity android:name="com.cc.notes.ui.activity.RegisteredActivity02"></activity>
         <activity android:name="com.cc.notes.ui.activity.RegisteredActivity03"></activity>
+        <activity android:name="com.cc.notes.ui.activity.HomeSecondActivity"></activity>
 
 
     </application>
