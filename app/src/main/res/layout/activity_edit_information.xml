@@ -24,67 +24,6 @@
 
     </android.support.v7.widget.Toolbar>
 
-
-    <RelativeLayout
-        android:id="@+id/edit_portraitlayout"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:elevation="3dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="#fff"
-        android:padding="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="头像"
-            android:textColor="#000"
-            android:textSize="20dp" />
-
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="20dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/tiaozhuan" />
-    </RelativeLayout>
-
-    <View
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:background="#c6c6c6"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp">
-    </View>
-    <RelativeLayout
-        android:id="@+id/edit_manifestolayout"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:elevation="3dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff"
-        android:padding="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="交友宣言"
-            android:textColor="#000"
-            android:textSize="20dp" />
-
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="20dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/tiaozhuan" />
-    </RelativeLayout>
-
     <RelativeLayout
         android:id="@+id/edit_namelayout"
         android:layout_marginLeft="10dp"
@@ -115,6 +54,38 @@
             android:maxEms="10"
             android:maxLines="1"
             android:ellipsize="end"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/tiaozhuan" />
+    </RelativeLayout>
+    <View
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="#c6c6c6"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp">
+    </View>
+    <RelativeLayout
+        android:id="@+id/edit_manifestolayout"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:elevation="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="交友宣言"
+            android:textColor="#000"
             android:textSize="20dp" />
 
         <ImageView
@@ -315,7 +286,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="城市"
+            android:text="籍贯"
             android:textColor="#000"
             android:textSize="20dp" />
 
@@ -325,7 +296,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:text="成都"
+            android:text="四川"
             android:textSize="20dp" />
 
         <ImageView

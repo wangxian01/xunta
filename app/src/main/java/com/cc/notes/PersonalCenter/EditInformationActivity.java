@@ -52,7 +52,6 @@ public class EditInformationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_information);
         mEditToolbar = (Toolbar) findViewById(R.id.edit_toolbar);
         mEditToolbar = (Toolbar) findViewById(R.id.edit_toolbar);
-        mEditPortraitlayout = (RelativeLayout) findViewById(R.id.edit_portraitlayout);
         mEditManifestolayout = (RelativeLayout) findViewById(R.id.edit_manifestolayout);
         mEditNamelayout = (RelativeLayout) findViewById(R.id.edit_namelayout);
         mEditNametext = (TextView) findViewById(R.id.edit_nametext);
@@ -89,17 +88,6 @@ public class EditInformationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-            }
-        });
-
-        /*
-        * 点击跳转更换头像界面
-        * */
-        mEditPortraitlayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent intent =new Intent(EditInformationActivity.this,PersonalHomeActivity.class);
-////                startActivity(intent);
             }
         });
 
@@ -170,12 +158,23 @@ public class EditInformationActivity extends AppCompatActivity {
         });
 
         /**
-         * 点击修改城市
+         * 点击修改籍贯
          * */
         mEditSitelayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                changeSite();
+            }
+        });
 
+        /*
+        * 点击修改个人简介
+        * */
+        mEditIntroducelayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(EditInformationActivity.this,ChangeIntroduce.class);
+                startActivity(intent);
             }
         });
     }
@@ -218,17 +217,17 @@ public class EditInformationActivity extends AppCompatActivity {
     }
 
     /*
-    * 修改性别
+    * 修改籍贯
     * */
-    public void changeSex(){
-        final String[] sex = new String[]{"男", "女"};//创建item
+    public void changeSite(){
+        final String[] sex = new String[]{"四川省","黑龙江省","吉林省","辽宁省","江苏省","山东省","安徽省","河北省","河南省","湖北省","湖南省","江西省","陕西省","山西省","青海省","海南省","广东省","贵州省","浙江省","福建省","台湾省","甘肃省","云南省","内蒙古自治区","宁夏回族自治区","新疆维吾尔自治区","西藏自治区","广西壮族自治区","北京","上海","天津","重庆","香港","澳门"};//创建item
         AlertDialog alertDialog = new AlertDialog.Builder(this)
-                .setTitle("修改您的性别")
-                .setIcon(R.drawable.xingbie)
+                .setTitle("修改您的籍贯")
+                .setIcon(R.drawable.jiguan)
                 .setItems(sex, new DialogInterface.OnClickListener() {//添加列表
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        mEditSex.setText(sex[i]);
+                        mEditSite.setText(sex[i]);
                         Toast.makeText(EditInformationActivity.this, "修改成功：" + sex[i], Toast.LENGTH_SHORT).show();
                     }
                 })
@@ -237,7 +236,7 @@ public class EditInformationActivity extends AppCompatActivity {
     }
 
     /*
-    * 修改身高方法
+    * 修改身高
     * */
     public void changHight(){
         final AlertDialog.Builder alertDialogname = new AlertDialog.Builder(this);
@@ -272,7 +271,7 @@ public class EditInformationActivity extends AppCompatActivity {
 
 
     /*
-     * 修改职业方法
+     * 修改职业
      * */
     public void changOccupation(){
         final String[] occupation = new String[]{"IT : 计算机/互联网/通信", "制造 ：生产/工艺/制造", "金融 ：金融/银行/投资/保险",
@@ -292,6 +291,23 @@ public class EditInformationActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    
+    /*
+     * 修改性别
+     * */
+    public void changeSex(){
+        final String[] sex = new String[]{"男", "女"};//创建item
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setTitle("修改您的性别")
+                .setIcon(R.drawable.xingbie)
+                .setItems(sex, new DialogInterface.OnClickListener() {//添加列表
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        mEditSex.setText(sex[i]);
+                        Toast.makeText(EditInformationActivity.this, "修改成功：" + sex[i], Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .create();
+        alertDialog.show();
+    }
 
 }

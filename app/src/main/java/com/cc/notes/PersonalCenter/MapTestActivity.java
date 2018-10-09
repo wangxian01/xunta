@@ -7,6 +7,7 @@ import android.content.pm.Signature;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -24,34 +25,36 @@ import java.security.cert.X509Certificate;
 import java.util.Locale;
 
 public class MapTestActivity extends AppCompatActivity {
+    private TextView mMapTest;
+
     /*
      * 获取sha1
      * */
-    public static String sHA1(Context context) {
-        try {
-            PackageInfo info = context.getPackageManager().getPackageInfo(
-                    context.getPackageName(), PackageManager.GET_SIGNATURES);
-            byte[] cert = info.signatures[0].toByteArray();
-            MessageDigest md = MessageDigest.getInstance("SHA1");
-            byte[] publicKey = md.digest(cert);
-            StringBuffer hexString = new StringBuffer();
-            for (int i = 0; i < publicKey.length; i++) {
-                String appendString = Integer.toHexString(0xFF & publicKey[i])
-                        .toUpperCase(Locale.US);
-                if (appendString.length() == 1)
-                    hexString.append("0");
-                hexString.append(appendString);
-                hexString.append(":");
-            }
-            String result= hexString.toString();
-            return result.substring(0, result.length()-1);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public static String sHA1(Context context) {
+//        try {
+//            PackageInfo info = context.getPackageManager().getPackageInfo(
+//                    context.getPackageName(), PackageManager.GET_SIGNATURES);
+//            byte[] cert = info.signatures[0].toByteArray();
+//            MessageDigest md = MessageDigest.getInstance("SHA1");
+//            byte[] publicKey = md.digest(cert);
+//            StringBuffer hexString = new StringBuffer();
+//            for (int i = 0; i < publicKey.length; i++) {
+//                String appendString = Integer.toHexString(0xFF & publicKey[i])
+//                        .toUpperCase(Locale.US);
+//                if (appendString.length() == 1)
+//                    hexString.append("0");
+//                hexString.append(appendString);
+//                hexString.append(":");
+//            }
+//            String result= hexString.toString();
+//            return result.substring(0, result.length()-1);
+//        } catch (PackageManager.NameNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchAlgorithmException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
     //声明AMapLocationClient类对象
     public AMapLocationClient mLocationClient = null;
@@ -65,6 +68,8 @@ public class MapTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_test);
+        mMapTest = (TextView) findViewById(R.id.map_test);
+
         init();
     }
 
@@ -104,7 +109,11 @@ public class MapTestActivity extends AppCompatActivity {
             if (aMapLocation != null) {
                 if (aMapLocation.getErrorCode() == 0) {
                     Log.e("位置：", aMapLocation.getAddress());
+                    mMapTest.setText("aMapLocation.getAddress()");
                 } else {
+                    mMapTest.setText("location Error, ErrCode:"
+                            + aMapLocation.getErrorCode() + ", errInfo:"
+                            + aMapLocation.getErrorInfo());
                     //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
                     Log.e("AmapError", "location Error, ErrCode:"
                             + aMapLocation.getErrorCode() + ", errInfo:"

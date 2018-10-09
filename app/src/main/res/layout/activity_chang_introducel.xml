@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/manifesto_toolbar"
+        android:id="@+id/introduce_toolbar"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         app:contentInsetStart="0dp"
@@ -20,26 +20,26 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="20dp"
-            android:text="修改交友宣言"/>
+            android:text="修改个人简介"/>
 
     </android.support.v7.widget.Toolbar>
 
     <EditText
         android:background="@drawable/edittext_shope_change"
-        android:padding="10dp"
         android:gravity="bottom"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
-        android:id="@+id/manifesto_text"
-        android:text="希望找个如你一般的人！"
+        android:id="@+id/introduce_text"
+        android:padding="10dp"
+        android:text="我不算漂亮,但看着也算舒服,所以你呢,也不用有多帅,看着顺眼就行了.我个头不算高,但穿高跟鞋也能挤进170的队伍 所以你呢 比我穿高跟鞋再高点就行了.我身材不算好,但比例绝对标准,所以你呢,不用身材有多好 比例标准就行了.我收入不高,但养活自己没问题 所以你呢 如果哪天我不幸失业了 能养活咱俩就行了！"
         android:layout_width="match_parent"
-        android:layout_height="150dp" />
+        android:layout_height="250dp" />
 
     <Button
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-        android:id="@+id/manifesto_button"
+        android:id="@+id/introduce_button"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
