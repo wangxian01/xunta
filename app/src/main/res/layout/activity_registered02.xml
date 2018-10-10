@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:background="@mipmap/backgrond"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,7 +11,6 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:background="#fff"
         android:layout_height="wrap_content">
 
         <ImageView
@@ -38,7 +38,7 @@
 
 
     <LinearLayout
-        android:background="#fff"
+
         android:paddingRight="20dp"
         android:paddingLeft="20dp"
         android:layout_marginTop="20dp"
@@ -56,25 +56,31 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="60dp">
-        <ImageButton
-            android:id="@+id/registered_man"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@android:color/background_light"
-            android:src="@drawable/man" />
+
+            <ImageButton
+                android:id="@+id/registered_man"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@android:color/background_light"
+                android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/man" />
+
             <ImageButton
                 android:id="@+id/registered_Aliens"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@android:color/background_light"
                 android:layout_marginLeft="130dp"
+                android:background="@android:color/background_light"
+                android:backgroundTint="@color/cardview_shadow_end_color"
                 android:src="@drawable/aliens__change" />
+
             <ImageButton
                 android:id="@+id/registered_woman"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginLeft="260dp"
                 android:background="@android:color/background_light"
+                android:backgroundTint="@android:color/transparent"
                 android:src="@drawable/woman" />
         </RelativeLayout>
 <RelativeLayout
@@ -104,12 +110,13 @@
         android:textAlignment="viewStart"
         android:textSize="25dp" />
 </RelativeLayout>
+
         <Button
             android:id="@+id/registered_button02"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@drawable/login_shope"
+            android:backgroundTint="@color/cardview_shadow_start_color"
             android:text="下\t一\t步"
             android:textColor="#fff"
             android:textSize="20dp" />
