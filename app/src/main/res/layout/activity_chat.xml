@@ -35,9 +35,10 @@
         <ImageButton
             android:id="@+id/sendpic"
             android:layout_gravity="center"
-            android:layout_width="50dp"
-            android:layout_height="40dp"
-            android:tooltipText="图片"/>
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:tooltipText="图片"
+            android:background="@drawable/sendpic"/>
 
     </LinearLayout>
 

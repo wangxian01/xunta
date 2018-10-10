@@ -68,6 +68,7 @@ public class Fragment3 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.activity_personal_home, container, false);
 
         mPersonalMybjnext = (ImageView)view. findViewById(R.id.personal_mybjnext);
