@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.notes.cc.notes.R;
 
@@ -69,11 +70,17 @@ public class RegisteredActivity02 extends AppCompatActivity {
         mregistered_button02.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegisteredActivity02.this, RegisteredActivity03.class);
-                intent.putExtra("sex",sex);
-                intent.putExtra("username",username);
-                intent.putExtra("password",password);
-                startActivity(intent);
+                if(sex.equals("")){
+                    Toast.makeText(getApplication(),"性别不能为空",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Intent intent = new Intent(RegisteredActivity02.this, RegisteredActivity03.class);
+                    intent.putExtra("sex",sex);
+                    intent.putExtra("username",username);
+                    intent.putExtra("password",password);
+                    startActivity(intent);
+                }
+
             }
         });
 

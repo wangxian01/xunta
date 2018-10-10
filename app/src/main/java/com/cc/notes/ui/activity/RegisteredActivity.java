@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.notes.cc.notes.R;
 
@@ -27,12 +28,15 @@ public class RegisteredActivity extends AppCompatActivity {
         mregistered_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Bundle bundle=new Bundle();
-//                bundle.putString("username",registered_username.getText().toString());//参数传值
-                Intent intent = new Intent(RegisteredActivity.this, RegisteredActivity01.class);
-                intent.putExtra("username",registered_username.getText().toString());
+                if (registered_username.equals("")){
+                    Toast.makeText(getApplicationContext(),"电话号码不能为空", Toast.LENGTH_SHORT).show();
 
-                startActivity(intent);
+                } else{
+                    Intent intent = new Intent(RegisteredActivity.this, RegisteredActivity01.class);
+                    intent.putExtra("username",registered_username.getText().toString());
+                    startActivity(intent);
+                }
+
             }
         });
 

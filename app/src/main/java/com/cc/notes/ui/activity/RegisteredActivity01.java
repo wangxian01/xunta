@@ -6,7 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.notes.cc.notes.R;
 
@@ -35,13 +37,18 @@ public class RegisteredActivity01 extends AppCompatActivity {
         mregistered_button01.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Bundle bundle=new Bundle();
-//                bundle.putString("registered_password",registered_password.getText().toString());
-//                bundle.putString("registered_confirm",registered_confirm.getText().toString());
-                Intent intent = new Intent(RegisteredActivity01.this, RegisteredActivity02.class);
-                intent.putExtra("password",registered_password.getText().toString());
-                intent.putExtra("username",string);
-                startActivity(intent);
+                if (registered_password.equals("")||registered_confirm.equals("")){
+                    Toast.makeText(getApplicationContext(),"密码不能为空", Toast.LENGTH_SHORT).show();
+
+                }else if (!registered_password.getText().toString().equals(registered_confirm.getText().toString())){
+                    Toast.makeText(getApplication(),"密码不一致，请重新输入",Toast.LENGTH_SHORT).show();
+                }else {
+
+                    Intent intent = new Intent(RegisteredActivity01.this, RegisteredActivity02.class);
+                    intent.putExtra("password",registered_password.getText().toString());
+                    intent.putExtra("username",string);
+                    startActivity(intent);
+                }
             }
         });
 
