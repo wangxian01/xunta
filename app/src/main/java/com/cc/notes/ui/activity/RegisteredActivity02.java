@@ -3,9 +3,11 @@ package com.cc.notes.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.notes.cc.notes.R;
 
@@ -16,14 +18,21 @@ import com.notes.cc.notes.R;
 public class RegisteredActivity02 extends AppCompatActivity {
     private  Boolean boolean_man = false,boolean_woman=false;
     private ImageView seximag_1,seximag_2;
-    private Button mregistered_button02;
+    private String sex;
+    private TextView registered_password,registered_username;
+    private Button mregistered_button02,registered_man,registered_woman;
+    private String username,password;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registered02);
         mregistered_button02=(Button) findViewById(R.id.registered_button02);
         seximag_1 = findViewById(R.id.registered_man);
         seximag_2=findViewById(R.id.registered_woman);
-
+        registered_password=(TextView)findViewById(R.id.registered_password);
+        registered_username=(TextView)findViewById(R.id.registered_username);
+        Intent intent_2 = getIntent();
+        username = intent_2.getStringExtra("username");
+        password = intent_2.getStringExtra("password");
 
 
         seximag_2.setOnClickListener(new View.OnClickListener() {
@@ -31,6 +40,8 @@ public class RegisteredActivity02 extends AppCompatActivity {
             public void onClick(View v) {
                 if (boolean_woman==false && boolean_man == false){
                     seximag_2.setImageResource(R.drawable.woman_white);
+                    sex = "女";
+                    Log.e("性别", "sss"+sex );
                     boolean_woman=true;
                 }else{
                     seximag_2.setImageResource(R.drawable.woman);
@@ -38,11 +49,14 @@ public class RegisteredActivity02 extends AppCompatActivity {
                 }
             }
         });
+
         seximag_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(boolean_man == false && boolean_woman==false){
                     seximag_1.setImageResource(R.drawable.man_white);
+                    sex = "男";
+                    Log.e("性别", "sss"+sex );
                     boolean_man = true;
                 }else{
                     seximag_1.setImageResource(R.drawable.man);
@@ -56,6 +70,9 @@ public class RegisteredActivity02 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(RegisteredActivity02.this, RegisteredActivity03.class);
+                intent.putExtra("sex",sex);
+                intent.putExtra("username",username);
+                intent.putExtra("password",password);
                 startActivity(intent);
             }
         });
