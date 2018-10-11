@@ -37,13 +37,12 @@ public class RegisteredActivity01 extends AppCompatActivity {
         mregistered_button01.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (registered_password.equals("")||registered_confirm.equals("")){
+                if (registered_password.getText()==null || registered_password.getText().length()==0||registered_password.getText().equals("")&&registered_password!=registered_confirm){
                     Toast.makeText(getApplicationContext(),"密码不能为空", Toast.LENGTH_SHORT).show();
 
                 }else if (!registered_password.getText().toString().equals(registered_confirm.getText().toString())){
                     Toast.makeText(getApplication(),"密码不一致，请重新输入",Toast.LENGTH_SHORT).show();
                 }else {
-
                     Intent intent = new Intent(RegisteredActivity01.this, RegisteredActivity02.class);
                     intent.putExtra("password",registered_password.getText().toString());
                     intent.putExtra("username",string);

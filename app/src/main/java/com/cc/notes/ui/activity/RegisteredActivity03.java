@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cc.notes.PersonalCenter.EditInformationActivity;
 import com.notes.cc.notes.R;
@@ -49,11 +50,17 @@ public class RegisteredActivity03 extends AppCompatActivity {
         mregistered_button03.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegisteredActivity03.this, LoginActivity.class);
-                intent.putExtra("user",username);
-                startActivity(intent);
+                if (editText.getText()==null || editText.getText().length()==0||editText.getText().equals("")){
+                    Toast.makeText(getApplication(),"出生日期不能为空",Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent = new Intent(RegisteredActivity03.this, LoginActivity.class);
+                    intent.putExtra("user",username);
+                    startActivity(intent);
+                }
+
             }
         });
 
-    }
 }
+
+    }

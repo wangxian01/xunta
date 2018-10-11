@@ -88,15 +88,7 @@
                 android:textColor="#fff"
                 android:text="注册"/>
 
-            <TextView
-                android:layout_weight="1"
-                android:id="@+id/login_forget"
-                android:layout_gravity="center"
-                android:gravity="right"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#fff"
-                android:text="忘了密码？"/>
+
         </LinearLayout>
 
         <Button
