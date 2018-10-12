@@ -70,7 +70,7 @@ public class RegisteredActivity02 extends AppCompatActivity {
         mregistered_button02.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(sex.equals("")){
+                if(boolean_woman == false && boolean_man == false){
                     Toast.makeText(getApplication(),"性别不能为空",Toast.LENGTH_SHORT).show();
                 }
                 else{
