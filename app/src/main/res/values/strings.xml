@@ -2,10 +2,10 @@
     <string name="app_name">寻她</string>
     <string name="title_activity_main"></string>
 
-    <string name="menu_bottom_navigation1">one</string>
-    <string name="menu_bottom_navigation2">two</string>
-    <string name="menu_bottom_navigation3">three</string>
+    <string name="menu_bottom_navigation1">主页</string>
+    <string name="menu_bottom_navigation2">聊天</string>
+    <string name="menu_bottom_navigation3">个人中心</string>
     <string name="title_activity_personal_details">PersonalDetails</string>
     <string name="title_activity_intimacy">IntimacyActivity</string>
-    <string name="netip">192.168.137.1</string>
+    <string name="netip">172.17.128.1</string>
 </resources>

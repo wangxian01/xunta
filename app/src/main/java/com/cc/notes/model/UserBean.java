@@ -29,6 +29,7 @@ public class UserBean {
     private String Occupation;
     private String Introduce;
 
+
     public String getUserid() {
         return Userid;
     }
