@@ -1,5 +1,6 @@
 package com.cc.notes.PersonalCenter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -43,7 +44,9 @@ public class ChangeIntroduce extends AppCompatActivity {
         mIntroduceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent =new Intent(ChangeIntroduce.this,EditInformationActivity.class);
+                intent.putExtra("mEditIntroduceString",mIntroduceText.getText().toString());
+                startActivity(intent);
             }
         });
     }

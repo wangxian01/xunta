@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -18,6 +19,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.notes.cc.notes.R;
+import com.zhy.http.okhttp.OkHttpUtils;
+
+import java.io.IOException;
 
 
 public class EditInformationActivity extends AppCompatActivity {
@@ -45,7 +49,7 @@ public class EditInformationActivity extends AppCompatActivity {
     private RelativeLayout mEditIntroducelayout;
     private TextView mEditIntroducetext;
     private Button mSaveButton;
-
+    private String mManifestoString,mEditIntroduceString;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +79,10 @@ public class EditInformationActivity extends AppCompatActivity {
         mEditIntroducetext = (TextView) findViewById(R.id.edit_introducetext);
         mSaveButton = (Button) findViewById(R.id.save_button);
 
+        Intent intent_get = getIntent();
+        mManifestoString = intent_get.getStringExtra("mManifestoString");
+        mEditIntroduceString = intent_get.getStringExtra("mEditIntroduceString");
+        //Log.e("测试：", "交友宣言"+mManifestoString+"个人简介"+mEditIntroduceString);
         /*
          * 设置标题为空
          * */
@@ -174,9 +182,39 @@ public class EditInformationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent =new Intent(EditInformationActivity.this,ChangeIntroduce.class);
+                intent.putExtra("","");
                 startActivity(intent);
             }
         });
+
+        mSaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Thread threads = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            OkHttpUtils
+                                    .get()
+                                    .url("http://"+getString(R.string.netip)+":8080/XunTa/ChangePortrait")
+                                    .addParams("userid", "10086")//模拟修改头像编号10086 ,
+                                    .addParams("Nickname", mEditNametext.getText().toString())
+                                    .addParams("sex", mEditSex.getText().toString())
+                                    .addParams("birthday", mEditBirthdaytext.getText().toString())
+                                    .addParams("Height", mEditHeighttext.getText().toString())
+                                    .addParams("Site", mEditSitetext.getText().toString())
+                                    .addParams("Manifesto", "")
+                                    .addParams("Occupation", mEditOccupationtext.getText().toString())
+                                    .addParams("Introduce", "")
+                                    .build().execute();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } }
+                });
+                //threads.start();
+            }
+        });
+
     }
 
     /*

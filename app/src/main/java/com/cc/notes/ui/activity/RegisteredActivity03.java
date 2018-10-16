@@ -4,10 +4,13 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cc.notes.PersonalCenter.EditInformationActivity;
 import com.notes.cc.notes.R;
@@ -19,11 +22,19 @@ import com.notes.cc.notes.R;
 public class RegisteredActivity03 extends AppCompatActivity {
     private EditText editText;
     private Button mregistered_button03;
+    private String sex,username,password;
+    private TextView registered_password,registered_username;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registered03);
         editText = findViewById(R.id.registered_age);
         mregistered_button03=(Button) findViewById(R.id.registered_button03);
+        Intent intent_3 = getIntent();
+        username = intent_3.getStringExtra("username");
+        password = intent_3.getStringExtra("password");
+        sex = intent_3.getStringExtra("sex");
+        Log.e("前数据", username+password+sex);
         editText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,10 +50,17 @@ public class RegisteredActivity03 extends AppCompatActivity {
         mregistered_button03.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegisteredActivity03.this, LoginActivity.class);
-                startActivity(intent);
+                if (editText.getText()==null || editText.getText().length()==0||editText.getText().equals("")){
+                    Toast.makeText(getApplication(),"出生日期不能为空",Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent = new Intent(RegisteredActivity03.this, LoginActivity.class);
+                    intent.putExtra("user",username);
+                    startActivity(intent);
+                }
+
             }
         });
 
-    }
 }
+
+    }
