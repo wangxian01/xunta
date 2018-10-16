@@ -110,7 +110,7 @@ public class Fragment1 extends Fragment {
         touchHelper.attachToRecyclerView(recyclerView);
         return view;
     }
-
+//
     private void initDatas() {
         list.add(R.drawable.touxiang);
         list.add(R.drawable.img_avatar_02);

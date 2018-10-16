@@ -14,7 +14,7 @@ import com.notes.cc.notes.R;
 
 import java.util.List;
 import java.util.Map;
-
+//
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private List<Integer> list;
     private List<Map<String,Object>> dataList;
