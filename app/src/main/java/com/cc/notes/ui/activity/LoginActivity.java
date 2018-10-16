@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.cc.notes.Service.SocketService;
 import com.cc.notes.model.UserBean;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -31,16 +32,14 @@ import java.util.ArrayList;
 
 
 public class LoginActivity extends AppCompatActivity {
-private TextView mLoginRegistered;
-private Button mLoginButton;
-private EditText mUserName;
-private EditText mUserPassword;
-private boolean aBoolean;
-private OkHttpClient client = new OkHttpClient();
-public static final MediaType JSON
-            = MediaType.parse("application/json; charset=utf-8");
-
-private String username, password;
+    private TextView mLoginRegistered;
+    private Button mLoginButton;
+    private EditText mUserName;
+    private EditText mUserPassword;
+    private boolean aBoolean;
+    private OkHttpClient client = new OkHttpClient();
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    private String username, password;
 
 //    @SuppressLint("HandlerLeak")
 //    private Handler mHandler = new Handler() {      //接收其他子线程的消息
@@ -77,10 +76,18 @@ private String username, password;
         super.onCreate(savedInstanceState);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
-        mLoginRegistered = (TextView) findViewById(R.id.login_registered);
-        mUserName = (EditText) findViewById(R.id.user_name);
-        mUserPassword = (EditText) findViewById(R.id.user_password);
-        mLoginButton = (Button) findViewById(R.id.login_button);
+
+
+/*        Intent intent = new Intent("com.example.communication.MSG_ACTION");
+        bindService(intent, conn, Context.BIND_AUTO_CREATE);*/
+
+        mLoginRegistered = findViewById(R.id.login_registered);
+        mUserName = findViewById(R.id.user_name);
+        mUserPassword = findViewById(R.id.user_password);
+        mLoginButton = findViewById(R.id.login_button);
+
+
+
 //        mLoginButton.setOnClickListener(new View.OnClickListener() {
 //        @Override
 //        public void onClick(View v) {
@@ -106,7 +113,6 @@ private String username, password;
 //                                public void onResponse(String response, int id) {
 //
 //                                }
-//
 //
 //                                public void onError(DownloadManager.Request request, Exception e) {
 //                                    Log.e(TAG, "网络错误");
@@ -140,18 +146,36 @@ private String username, password;
 //        }
 //    });
         mLoginRegistered.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                Intent intent = new Intent(LoginActivity.this, RegisteredActivity.class);
-                                                startActivity(intent);
-                                            }
-                                        });
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisteredActivity.class);
+                startActivity(intent);
+            }
+        });
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(mUserName.getText().toString().equals("13795971992")){
+                    //获取登陆用户的昵称
+                    SharedPreferences sharedPreferences = getSharedPreferences("getuser", Context.MODE_PRIVATE);
+                    @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.edit();
+                    //editor.putBoolean("islogin",false);//默认未登录
+                    editor.putString("name","13795971992");
+                    editor.apply();
+
+
+                    //启动连接服务
+/*                    Intent intent = new Intent(LoginActivity.this, SocketService.class);
+                    startService(intent);*/
+
+                }
+
                 Intent intent = new Intent(LoginActivity.this, FirsthomeActivity.class);
                 startActivity(intent);
+
+
 //                Thread thread = new Thread(){
 //                    @Override
 //                    public void run() {
@@ -195,11 +219,12 @@ private String username, password;
 //                }
             }
         });
+    }
 
-}
 
     /**
-     * post请求*/
+     * post请求
+     */
     private String post(String url, String json) throws IOException {
         RequestBody body = RequestBody.create(JSON, json);
         Request request = new Request.Builder()
@@ -209,5 +234,7 @@ private String username, password;
         Response response = client.newCall(request).execute();
         return response.body().string();
     }
+
+
 
 }

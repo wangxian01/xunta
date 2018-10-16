@@ -37,7 +37,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="0402e6aabc0b672e35f01db17157ed55" />
@@ -46,40 +47,39 @@
             android:name="com.cc.notes.ui.activity.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity android:name="com.cc.notes.ui.activity.ChatActivity">
+        <activity android:name="com.cc.notes.ui.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name="com.cc.notes.test" />
-        <activity android:name="com.cc.notes.PersonalCenter.PersonalHomeActivity"
+        <activity
+            android:name="com.cc.notes.PersonalCenter.PersonalHomeActivity"
             tools:ignore="InnerclassSeparator" />
         <activity android:name="com.cc.notes.PersonalCenter.EditInformationActivity" />
         <activity android:name="com.cc.notes.PersonalCenter.ChangeManifestoActivity" />
         <activity android:name="com.cc.notes.XunHome.XunHomeActivity" />
         <activity android:name="com.cc.notes.PersonalCenter.MapTestActivity" />
-        <activity android:name="com.cc.notes.ui.activity.HomeSecondActivity"/>
+        <activity android:name="com.cc.notes.ui.activity.HomeSecondActivity" />
 
-<!--        <activity
+            <activity
             android:name="com.cc.notes.ui.activity.ChatActivity"
             android:label="ChatActivity"
-            android:theme="@style/AppTheme.NoActionBar" />-->
+            android:theme="@style/AppTheme.NoActionBar" />
+<activity android:name="com.cc.notes.ui.activity.FirsthomeActivity"/>
 
         <activity
             android:name="com.cc.notes.ui.activity.PersonalDetails"
             android:label="@string/title_activity_personal_details"
             android:theme="@style/AppTheme.NoActionBar" />
-
-     <activity
+        <activity
             android:name="com.cc.notes.ui.activity.IntimacyActivity"
             android:label="@string/title_activity_intimacy"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
-
+        <service android:name="com.cc.notes.Service.SocketService"
+            tools:ignore="InnerclassSeparator" />
     </application>
 
 </manifest>

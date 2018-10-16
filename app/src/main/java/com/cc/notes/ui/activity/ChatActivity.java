@@ -3,9 +3,12 @@ package com.cc.notes.ui.activity;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -14,6 +17,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
@@ -28,8 +32,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cc.notes.PersonalCenter.CircularImageView;
+import com.cc.notes.Service.SocketService;
 import com.cc.notes.adapter.MsgAdapter;
 import com.cc.notes.model.MsgInfo;
 import com.notes.cc.notes.R;
@@ -49,63 +55,59 @@ import java.util.List;
 public class ChatActivity extends AppCompatActivity {
 
     private List<MsgInfo> msgList = new ArrayList<>();
-    private String path;
-    private Socket socket;//客户端套接字
+    //private String path;
+    private Socket socket;
     private MsgAdapter adapter;
     private RecyclerView msgRecyclerView;
     private static int REQ = 1;
     private static int REQ_2 = 2;
     private AlertDialog dialog;
-    private CircularImageView mPersonalPortrait;
+    SocketService.MyBinder myBinder;
 
+    private ServiceConnection connection = new ServiceConnection() {
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+        }
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            myBinder = (SocketService.MyBinder)service;
+            socket=myBinder.getService().socket;
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-
         // System.out.println("你选择的聊天对象是：    "+getIntent().getStringExtra("nickname"));
-
         //内置手机存储根目录的路径
-        path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/DCIM/1.jpg";
-
-        final EditText inputText = (EditText) findViewById(R.id.input);
-        Button sendBtn = (Button) findViewById(R.id.send);
-
+       // path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/DCIM/1.jpg";
+        final EditText inputText = findViewById(R.id.input);
+        Button sendBtn = findViewById(R.id.send);
         msgRecyclerView = findViewById(R.id.msg);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         msgRecyclerView.setLayoutManager(layoutManager);
-
         adapter = new MsgAdapter(msgList);
         msgRecyclerView.setAdapter(adapter);
-
-
+        //开启服务
+        Intent bindIntent = new Intent(this, SocketService.class);
+        bindService(bindIntent, connection, BIND_AUTO_CREATE);
         new Thread(netrunnable).start();  //启动子线程
-
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
-
                         try {
-
                             String content = inputText.getText().toString();
-
                             //发送消息
                             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-
                             MsgInfo xinxi=new MsgInfo(content, MsgInfo.TYPE.SENT, "王贤", "谭林", "", "没有发送信息", null, "msg");
-
                             oos.writeObject(xinxi);
-
                             oos.flush();
-
                             if ("".equals(content))
                                 return;
                             msgList.add(xinxi);
-
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -113,18 +115,13 @@ public class ChatActivity extends AppCompatActivity {
                                     int newSize = msgList.size() - 1;
                                     adapter.notifyItemInserted(newSize);
                                     msgRecyclerView.scrollToPosition(newSize);
-
                                     //清空输入框中的内容
                                     inputText.setText("");
-
                                 }
                             });
-
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-
-
                     }
                 });
 
@@ -140,8 +137,6 @@ public class ChatActivity extends AppCompatActivity {
                 showTypeDialog();
             }
         });
-
-
 
     }
 
@@ -234,12 +229,10 @@ public class ChatActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK){
             if(requestCode == REQ){
-
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
                 {
                     ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
                 }
-
                 else {
                     Bundle bundle = data.getExtras();      //获取拍摄信息
                     final Bitmap bitmap = (Bitmap) bundle.get("data");
@@ -321,19 +314,25 @@ public class ChatActivity extends AppCompatActivity {
             //
             // TODO: http request.
             //
-
-            try {
-                socket = new Socket("172.17.162.160", 8888);
+        try {
+                //socket = new Socket("172.17.162.160", 8888);
 
                 //启动循环监听从服务器发来的消息
-                new ClientThread().start();
+/*                new ClientThread().start();
 
                 //向服务器发送上线信息
                 ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
 
                 oos.writeObject(new MsgInfo(null, null, "王贤", "谭林", "online", null, null, null));
 
-                oos.flush();
+                oos.flush();*/
+
+
+            //向服务器发送上线信息
+            SharedPreferences sharedPreferences = getSharedPreferences("getuser", Context.MODE_PRIVATE);
+            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+            oos.writeObject(new MsgInfo(null, null, sharedPreferences.getString("name","13795971992"), "谭林", "online", null, null, null));
+            oos.flush();
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -354,8 +353,8 @@ public class ChatActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         dialog = builder.create();
         View view = View.inflate(this, R.layout.dialog_select_photo, null);
-        TextView tv_select_gallery = (TextView) view.findViewById(R.id.tv_select_gallery);
-        TextView tv_select_camera = (TextView) view.findViewById(R.id.tv_select_camera);
+        TextView tv_select_gallery = view.findViewById(R.id.tv_select_gallery);
+        TextView tv_select_camera = view.findViewById(R.id.tv_select_camera);
 
         tv_select_gallery.setOnClickListener(new View.OnClickListener() {// 在相册中选取
             @Override
@@ -389,7 +388,6 @@ public class ChatActivity extends AppCompatActivity {
         });
         dialog.setView(view);
         dialog.show();
-
     }
 
 //把Cursor的路径转化为存储路径
@@ -486,7 +484,6 @@ public class ChatActivity extends AppCompatActivity {
         private static boolean isMediaDocument(Uri uri) {
             return "com.android.providers.media.documents".equals(uri.getAuthority());
         }
-
         /**
          * @param uri the Uri to check
          * @return Whether the Uri authority is DownloadsProvider
@@ -494,6 +491,13 @@ public class ChatActivity extends AppCompatActivity {
         private static boolean isDownloadsDocument(Uri uri) {
             return "com.android.providers.downloads.documents".equals(uri.getAuthority());
         }
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Intent stopIntent = new Intent(ChatActivity.this, SocketService.class);
+        stopService(stopIntent);
+
     }
 }
 
