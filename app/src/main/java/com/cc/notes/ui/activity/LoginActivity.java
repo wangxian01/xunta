@@ -150,49 +150,49 @@ private String username, password;
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, FirsthomeActivity.class);
-                startActivity(intent);
-//                Thread thread = new Thread(){
-//                    @Override
-//                    public void run() {
-//                        super.run();
-//                        try {
-//                            String restult = post("http://"+getString(R.string.netip)+":8080/XunTa/LoginServlet","");
-//                            Gson gson = new Gson();
-//                            ArrayList<UserBean> userBeans = gson.fromJson(restult,new TypeToken<ArrayList<UserBean>>() {
-//                            }.getType());
-//                            for(int i = 0  ;i < userBeans.size();i++){
-//                                if(String.valueOf(mUserName.getText()).equals(userBeans.get(i).getUserid().trim()) && String.valueOf(mUserPassword.getText()).equals(userBeans.get(i).getPassword().trim())){
-//                                    aBoolean = true;
-//                                    break;
-//                                }else {
-//                                    aBoolean = false;
-//
-//                                }
-//
-//                            }
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                };
-//                thread.start();
-//                try {
-//                    thread.join();
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                if (aBoolean == true){
-//                    Intent intent = new Intent(LoginActivity.this, FirsthomeActivity.class);
-//                    startActivity(intent);
-//                }else{
-//                    new AlertDialog.Builder(LoginActivity.this)
-//                            .setTitle("用户名或密码有误！")
-//                            .setMessage("请输入！")
-//                            .setPositiveButton("确定", null)
-//                            .show();
-//                }
+//                Intent intent = new Intent(LoginActivity.this, FirsthomeActivity.class);
+//                startActivity(intent);
+                Thread thread = new Thread(){
+                    @Override
+                    public void run() {
+                        super.run();
+                        try {
+                            String restult = post("http://"+getString(R.string.netip)+":8080/XunTa/LoginServlet","");
+                            Gson gson = new Gson();
+                            ArrayList<UserBean> userBeans = gson.fromJson(restult,new TypeToken<ArrayList<UserBean>>() {
+                            }.getType());
+                            for(int i = 0  ;i < userBeans.size();i++){
+                                if(String.valueOf(mUserName.getText()).equals(userBeans.get(i).getUserid().trim()) && String.valueOf(mUserPassword.getText()).equals(userBeans.get(i).getPassword().trim())){
+                                    aBoolean = true;
+                                    break;
+                                }else {
+                                    aBoolean = false;
+
+                                }
+
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                thread.start();
+                try {
+                    thread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                if (aBoolean == true){
+                    Intent intent = new Intent(LoginActivity.this, FirsthomeActivity.class);
+                    startActivity(intent);
+                }else{
+                    new AlertDialog.Builder(LoginActivity.this)
+                            .setTitle("用户名或密码有误！")
+                            .setMessage("请输入！")
+                            .setPositiveButton("确定", null)
+                            .show();
+                }
             }
         });
 

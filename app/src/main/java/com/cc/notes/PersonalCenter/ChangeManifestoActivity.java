@@ -1,5 +1,6 @@
 package com.cc.notes.PersonalCenter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -44,7 +45,9 @@ public class ChangeManifestoActivity extends AppCompatActivity {
         mManifestoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent =new Intent(ChangeManifestoActivity.this,EditInformationActivity.class);
+                intent.putExtra("mManifestoString",mManifestoText.getText().toString());
+                startActivity(intent);
             }
         });
     }
