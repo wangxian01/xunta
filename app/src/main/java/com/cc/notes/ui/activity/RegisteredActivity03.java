@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import com.cc.notes.PersonalCenter.EditInformationActivity;
 import com.notes.cc.notes.R;
+import com.zhy.http.okhttp.OkHttpUtils;
+
+import java.io.IOException;
 
 /**
  * Created by 侯顺发 on 2018/9/6.
@@ -53,6 +56,28 @@ public class RegisteredActivity03 extends AppCompatActivity {
                 if (editText.getText()==null || editText.getText().length()==0||editText.getText().equals("")){
                     Toast.makeText(getApplication(),"出生日期不能为空",Toast.LENGTH_SHORT).show();
                 }else{
+                            /*
+         * 注册接口测试
+         * */
+        Thread threads = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    OkHttpUtils
+                            .get()
+                            .url("http://"+getApplicationContext().getString(R.string.netip)+":8080/XunTa/XunRegisterServlet")
+                            .addParams("userid", username)
+                            .addParams("password", password)
+                            .addParams("sex", sex)
+                            .addParams("birthday", editText.getText().toString())
+                            .build().execute();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        threads.start();
                     Intent intent = new Intent(RegisteredActivity03.this, LoginActivity.class);
                     intent.putExtra("user",username);
                     startActivity(intent);
