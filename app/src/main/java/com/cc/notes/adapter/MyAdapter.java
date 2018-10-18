@@ -1,6 +1,7 @@
 package com.cc.notes.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.cc.notes.model.Homeinfo;
+import com.cc.notes.ui.activity.HomeSecondActivity;
 import com.notes.cc.notes.R;
 
 import java.util.List;
@@ -17,13 +20,11 @@ import java.util.Map;
 //
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private List<Integer> list;
-    private List<Map<String,Object>> dataList;
     private Activity activity;
     private Map<String, Object> map;
 
-    public MyAdapter(List<Integer> list,List<Map<String, Object>> dataList, Activity activity) {
+    public MyAdapter(List<Integer> list, Activity activity) {
         this.list = list;
-        this.dataList = dataList;
         this.activity = activity;
     }
 
@@ -42,24 +43,23 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, final int position) {
-        map = dataList.get(position);
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         ImageView avatarImageView = ((MyViewHolder) holder).avatarImageView;
         TextView avatarTextView1 = ((MyViewHolder) holder).tv_age;
         TextView avatarTextView2 = ((MyViewHolder) holder).tv_hangye;
         TextView avatarTextView3 = ((MyViewHolder) holder).tv_xingzuo;
-        ((MyViewHolder) holder).tv_name.setText(map.get("name").toString());
+        System.out.println(position);
 
         // 获取数据显示在各组件
-        Log.e("测试", "数据"+dataList.toString());
-        avatarImageView.setImageResource(list.get(position));
+        avatarImageView.setImageResource(Homeinfo.img[list.get(position)]);
         // Log.e("测试", "数据"+(String) map.get("name"));
-        // avatarTextView1.setText("莫法"+position);
-        avatarTextView1.setText( map.get("age").toString());
-        avatarTextView2.setText((String) map.get("hangye"));
-        avatarTextView3.setText((String) map.get("xingzuo"));
 
-        avatarImageView.setImageResource(list.get(position));
+        ((MyViewHolder) holder).tv_name.setText(Homeinfo.name[list.get(position)]);
+        avatarTextView1.setText( Homeinfo.age[list.get(position)]);
+        avatarTextView2.setText(Homeinfo.hangye[list.get(position)]);
+        avatarTextView3.setText(Homeinfo.xingzuo[list.get(position)]);
+
+//        avatarImageView.setImageResource(list.get(position));
         if (onItemClickListener!=null){
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

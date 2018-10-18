@@ -73,6 +73,7 @@
         <activity android:name="com.cc.notes.XunHome.XunHomeActivity" />
         <activity android:name="com.cc.notes.PersonalCenter.MapTestActivity" />
         <activity android:name="com.cc.notes.ui.activity.ChatActivity" />
+        <activity android:name="com.cc.notes.ui.activity.HomeSecondActivity"></activity>
         <activity
             android:name="com.cc.notes.ui.activity.PersonalDetails"
             android:label="@string/title_activity_personal_details"

@@ -165,7 +165,7 @@ public class Fragment3 extends Fragment {
                         });
             }
         });
-        thread.start();
+        //thread.start();
 
         /**
          * 点击编辑个人信息
