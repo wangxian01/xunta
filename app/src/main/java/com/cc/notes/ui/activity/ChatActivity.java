@@ -21,6 +21,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -39,6 +40,11 @@ import com.cc.notes.Service.SocketService;
 import com.cc.notes.adapter.MsgAdapter;
 import com.cc.notes.model.MsgInfo;
 import com.notes.cc.notes.R;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.Callback;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -56,12 +62,16 @@ public class ChatActivity extends AppCompatActivity {
 
     private List<MsgInfo> msgList = new ArrayList<>();
     //private String path;
+
+
+    private String fanhuidehaoma;
     private Socket socket;
     private MsgAdapter adapter;
     private RecyclerView msgRecyclerView;
     private static int REQ = 1;
     private static int REQ_2 = 2;
     private AlertDialog dialog;
+    public String me;
     SocketService.MyBinder myBinder;
 
     private ServiceConnection connection = new ServiceConnection() {
@@ -72,26 +82,59 @@ public class ChatActivity extends AppCompatActivity {
         public void onServiceConnected(ComponentName name, IBinder service) {
             myBinder = (SocketService.MyBinder)service;
             socket=myBinder.getService().socket;
+
+            //启动循环监听从服务器发来的消息
+            new ClientThread().start();
+
         }
     };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-        // System.out.println("你选择的聊天对象是：    "+getIntent().getStringExtra("nickname"));
+
+
+        //开启服务
+        Intent bindIntent = new Intent(this, SocketService.class);
+        bindService(bindIntent, connection, BIND_AUTO_CREATE);
+
+        //System.out.println("你选择的聊天对象是：    "+getIntent().getStringExtra("nickname"));
         //内置手机存储根目录的路径
        // path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/DCIM/1.jpg";
+
         final EditText inputText = findViewById(R.id.input);
         Button sendBtn = findViewById(R.id.send);
         msgRecyclerView = findViewById(R.id.msg);
+
+        TextView nizi=findViewById(R.id.yonghunicheng);
+        nizi.setText(getIntent().getStringExtra("nickname"));
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         msgRecyclerView.setLayoutManager(layoutManager);
         adapter = new MsgAdapter(msgList);
         msgRecyclerView.setAdapter(adapter);
-        //开启服务
-        Intent bindIntent = new Intent(this, SocketService.class);
-        bindService(bindIntent, connection, BIND_AUTO_CREATE);
-        new Thread(netrunnable).start();  //启动子线程
+
+//根据你选择的用户昵称查询到该用户的id，传给接收对象
+        OkHttpUtils
+                .get()
+                .url("http://192.168.1.187:8080/nicknameServlet")
+                .addParams("guanjianzi",getIntent().getStringExtra("nickname"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        fanhuidehaoma=response;
+                    }
+                });
+
+
+      // new Thread(netrunnable).start();  //启动子线程
+
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,10 +142,12 @@ public class ChatActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         try {
+
+                            SharedPreferences sharedPreferences = getSharedPreferences("getuser", Context.MODE_PRIVATE);
                             String content = inputText.getText().toString();
                             //发送消息
                             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-                            MsgInfo xinxi=new MsgInfo(content, MsgInfo.TYPE.SENT, "王贤", "谭林", "", "没有发送信息", null, "msg");
+                            MsgInfo xinxi=new MsgInfo(content, MsgInfo.TYPE.SENT, sharedPreferences.getString("name","13795971992"), fanhuidehaoma, "", "没有发送信息", null, "msg");
                             oos.writeObject(xinxi);
                             oos.flush();
                             if ("".equals(content))
@@ -124,7 +169,6 @@ public class ChatActivity extends AppCompatActivity {
                         }
                     }
                 });
-
                 thread.start();
             }
         });
@@ -243,15 +287,23 @@ public class ChatActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             try {
+                                SharedPreferences sharedPreferences = getSharedPreferences("getuser", Context.MODE_PRIVATE);
                                 ObjectOutputStream   oos = new ObjectOutputStream(socket.getOutputStream());
-                                MsgInfo hehe=new MsgInfo(null, MsgInfo.TYPE.SENT, "tanlin", "wangxian", null, null, Bitmap2Bytes(bitmap), "picture");
-                                //oos.writeObject(hehe);
+                                MsgInfo hehe=new MsgInfo(null, MsgInfo.TYPE.SENT, sharedPreferences.getString("name","13795971992"), fanhuidehaoma, null, null, Bitmap2Bytes(bitmap), "picture");
+                                oos.writeObject(hehe);
                                 msgList.add(hehe);
                                 oos.flush();
+
+                                Message message = Message.obtain();
+                                message.obj = hehe;
+                                message.what = 3;
+                                handler.sendMessage(message);
+
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            runOnUiThread(new Runnable() {
+
+                          runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
                                     //如果有新消息，则设置适配器的长度（通知适配器，有新的数据被插入），并让 RecyclerView 定位到最后一行
@@ -275,16 +327,19 @@ public class ChatActivity extends AppCompatActivity {
                     ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
                 }
                 else{
+
                     final String realPathFromUri = RealPathFromUriUtils.getRealPathFromUri(this, data.getData());
+
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
                             try {
-                                ObjectOutputStream   oos = new ObjectOutputStream(socket.getOutputStream());
-                                MsgInfo hehe=new MsgInfo(null, MsgInfo.TYPE.SENT, "王贤", "谭林", "", null, File2byte(realPathFromUri), "picture");
-                                oos.writeObject(hehe);
+                                SharedPreferences sharedPreferences = getSharedPreferences("getuser", Context.MODE_PRIVATE);
+
+                                MsgInfo hehe=new MsgInfo(null, MsgInfo.TYPE.SENT, sharedPreferences.getString("name","13795971992"), fanhuidehaoma, "", null, File2byte(realPathFromUri), "picture");
+
                                 msgList.add(hehe);
-                                oos.flush();
+
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
@@ -294,6 +349,14 @@ public class ChatActivity extends AppCompatActivity {
                                         msgRecyclerView.scrollToPosition(newSize);
                                     }
                                 });
+
+                                //把图片发送到服务端
+                                ObjectOutputStream  oos = new ObjectOutputStream(socket.getOutputStream());
+                                oos.writeObject(hehe);
+                                oos.flush();
+
+
+
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -306,37 +369,23 @@ public class ChatActivity extends AppCompatActivity {
         }
     }
 
-
     //新线程进行网络请求
     Runnable netrunnable = new Runnable() {
+
         @Override
         public void run() {
-            //
-            // TODO: http request.
-            //
-        try {
+
                 //socket = new Socket("172.17.162.160", 8888);
 
                 //启动循环监听从服务器发来的消息
-/*                new ClientThread().start();
+              new ClientThread().start();
 
-                //向服务器发送上线信息
+ /*                 //向服务器发送上线信息
                 ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
 
                 oos.writeObject(new MsgInfo(null, null, "王贤", "谭林", "online", null, null, null));
 
                 oos.flush();*/
-
-
-            //向服务器发送上线信息
-            SharedPreferences sharedPreferences = getSharedPreferences("getuser", Context.MODE_PRIVATE);
-            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-            oos.writeObject(new MsgInfo(null, null, sharedPreferences.getString("name","13795971992"), "谭林", "online", null, null, null));
-            oos.flush();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
             Message msg = new Message();
             msg.what = 1;
@@ -344,7 +393,6 @@ public class ChatActivity extends AppCompatActivity {
             data.putString("value", "用户上线提醒");
             msg.setData(data);
             handler.sendMessage(msg);
-
         }
     };
 
@@ -495,6 +543,8 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        unbindService(connection);
+
         Intent stopIntent = new Intent(ChatActivity.this, SocketService.class);
         stopService(stopIntent);
 

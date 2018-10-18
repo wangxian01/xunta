@@ -71,7 +71,9 @@ public class Fragment2 extends Fragment {
         View mainview = null;
 
         SharedPreferences sharedPreferences = Objects.requireNonNull(getContext()).getSharedPreferences("getuser", Context.MODE_PRIVATE);
+
         Log.e(TAG, "onCreateView: "+ sharedPreferences.getBoolean("islogin",false));
+
         if (sharedPreferences.getBoolean("islogin",false)) {
             mainview = inflater.inflate(R.layout.activity_main_chat, container, false);
 
@@ -89,7 +91,7 @@ public class Fragment2 extends Fragment {
                 public void run() {
                     OkHttpUtils
                             .get()
-                            .url("http://120.79.180.18/GetFriendsServlet")
+                            .url("http://192.168.1.187:8080/GetFriendsServlet")
                             .build()
                             .execute(new StringCallback() {
                                 @Override

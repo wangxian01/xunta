@@ -15,6 +15,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cc.notes.Service.SocketService;
 import com.cc.notes.model.UserBean;
@@ -26,9 +27,13 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -157,23 +162,47 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(mUserName.getText().toString().equals("13795971992")){
-                    //获取登陆用户的昵称
+                if(mUserName.getText().toString().equals("13795971992")&&mUserPassword.getText().toString().equals("123")){
+
+                    //启动连接服务
+                    Intent intentservice = new Intent(LoginActivity.this, SocketService.class);
+                    startService(intentservice);
+
+                    //储存登陆用户
                     SharedPreferences sharedPreferences = getSharedPreferences("getuser", Context.MODE_PRIVATE);
                     @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.edit();
-                    //editor.putBoolean("islogin",false);//默认未登录
+                    editor.putBoolean("islogin",true);//设置登陆状态为TRUE
                     editor.putString("name","13795971992");
                     editor.apply();
 
+                    //这里有三个调查页
+
+                    Intent intent = new Intent(LoginActivity.this, FirsthomeActivity.class);
+                    startActivity(intent);
+
+                }else if(mUserName.getText().toString().equals("18030848415")&&mUserPassword.getText().toString().equals("123")) {
 
                     //启动连接服务
-/*                    Intent intent = new Intent(LoginActivity.this, SocketService.class);
-                    startService(intent);*/
+                    Intent intentservice = new Intent(LoginActivity.this, SocketService.class);
+                    startService(intentservice);
+
+                    //储存登陆用户
+                    SharedPreferences sharedPreferences = getSharedPreferences("getuser", Context.MODE_PRIVATE);
+                    @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("islogin",true);//设置登陆状态为TRUE
+                    editor.putString("name","18030848415");
+                    editor.apply();
+
+                    //这里有三个调查页
+
+                    Intent intent = new Intent(LoginActivity.this, FirsthomeActivity.class);
+                    startActivity(intent);
 
                 }
 
-                Intent intent = new Intent(LoginActivity.this, FirsthomeActivity.class);
-                startActivity(intent);
+
+
+
 
 
 //                Thread thread = new Thread(){
@@ -235,6 +264,37 @@ public class LoginActivity extends AppCompatActivity {
         return response.body().string();
     }
 
+/*   增加关注的方法
+*
+* 谭林
+*
+* 备用
+* 三个参数。头像名称，昵称，签名
+* */
+    public void guanzhumeinv(){
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkHttpUtils
+                        .get()
+                        .url("http://120.79.180.18/GetFriendsServlet")
+                        .build()
+                        .execute(new StringCallback() {
+                            @Override
+                            public void onError(Request request, Exception e) {
+                                //Toast.makeText(getActivity(), "网络连接异常", Toast.LENGTH_SHORT).show();
+                            }
+                            @Override
+                            public void onResponse(String response) {
+
+                            }
+                        });
+            }
+        });
+        thread.start();
+
+    }
 
 
 }
