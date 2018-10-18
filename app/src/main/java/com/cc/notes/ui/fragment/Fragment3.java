@@ -95,6 +95,19 @@ public class Fragment3 extends Fragment {
         mPersonalMybjnext = (ImageView)view. findViewById(R.id.personal_mybjnext);
         mPersonalPortrait = (CircularImageView)view.findViewById(R.id.personal_portrait);
 
+        mPersonalBackground = (LinearLayout)view. findViewById(R.id.personal_background);
+        mPersonalName = (TextView) view.findViewById(R.id.personal_name);
+        mPersonalManifesto = (TextView)view. findViewById(R.id.personal_manifesto);
+        mPersonalSex = (TextView)view. findViewById(R.id.personal_sex);
+        mPersonalHeight = (TextView) view.findViewById(R.id.personal_height);
+        mPersonalBirthday = (TextView)view. findViewById(R.id.personal_birthday);
+        mPersonalIntroduce = (TextView) view.findViewById(R.id.personal_introduce);
+        mPersonalMysc = (RelativeLayout) view.findViewById(R.id.personal_mysc);
+        mPersonalScimg = (ImageView)view. findViewById(R.id.personal_scimg);
+        mPersonalMyscnext = (ImageView) view.findViewById(R.id.personal_myscnext);
+        mPersonalMybj = (RelativeLayout) view.findViewById(R.id.personal_mybj);
+        mPersonalBjimg = (ImageView) view.findViewById(R.id.personal_bjimg);
+
 //        Thread thread = new Thread(){
 //            @Override
 //            public void run() {
@@ -139,11 +152,15 @@ public class Fragment3 extends Fragment {
                                     userBeans = gson.fromJson(response.toString(), new TypeToken<ArrayList<UserBean>>() {
                                     }.getType());
                                     Bitmap bitmap = stringToBitmap(userBeans.get(0).getPortrait());
-                                    Log.e("测试：", String.valueOf(bitmap));
+                                   // Log.e("测试：", String.valueOf(bitmap));
                                     //Log.e("测试：", userBeans.get(0).getPortrait());
                                     mPersonalPortrait.setImageBitmap(bitmap);
+                                    mPersonalSex.setText(userBeans.get(0).getSex());
+                                    mPersonalHeight.setText(userBeans.get(0).getHeight());
+                                    mPersonalBirthday.setText(userBeans.get(0).getBirthday());
+                                    mPersonalIntroduce.setText(userBeans.get(0).getIntroduce());
                                 } else {
-                                    //new AlertDialog.Builder(getContext()).setMessage("没有搜到！！").create().show();
+
                                 }
                             }
                         });
@@ -174,6 +191,8 @@ public class Fragment3 extends Fragment {
 
         return view;
     }
+
+
 
     private void showTypeDialog() {
         //显示对话框

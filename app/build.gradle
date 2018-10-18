@@ -26,7 +26,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     /*定位*/
-    compile 'com.amap.api:location:latest.integration'
+    implementation 'com.amap.api:location:latest.integration'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
@@ -45,11 +45,11 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.9.1'
     implementation 'com.google.code.gson:gson:2.8.2'
     /*图片处理*/
-    compile 'com.jph.takephoto:takephoto_library:4.0.3'
-    compile 'com.yanzhenjie:permission:1.0.5'
+    implementation 'com.jph.takephoto:takephoto_library:4.0.3'
+    implementation 'com.yanzhenjie:permission:1.0.5'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     //图片加载库
     implementation 'com.zhy:okhttputils:2.0.0'
 
-    compile project(path: ':specialprogressbarlibrary')
+    implementation project(path: ':specialprogressbarlibrary')
 }
