@@ -47,10 +47,10 @@
             android:name="com.cc.notes.ui.activity.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.cc.notes.ui.activity.FirsthomeActivity">
+       <!-- <activity android:name="com.cc.notes.ui.activity.FirsthomeActivity">-->
 
-        </activity>
-        <activity android:name="com.cc.notes.ui.activity.LoginActivity">
+      <!--  </activity>-->
+        <activity android:name="com.cc.notes.ui.activity.FirsthomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -63,27 +63,26 @@
         <activity android:name="com.cc.notes.ui.activity.RegisteredActivity"/>
         <activity android:name="com.cc.notes.ui.activity.RegisteredActivity01"/>
         <activity android:name="com.cc.notes.ui.activity.RegisteredActivity02">
-
         </activity>
         <activity android:name="com.cc.notes.ui.activity.RegisteredActivity03"/>
         <activity android:name="com.cc.notes.PersonalCenter.PersonalHomeActivity"
             tools:ignore="InnerclassSeparator" />
+
+        <activity android:name="com.cc.notes.ui.activity.HomeSecondActivity" />
         <activity android:name="com.cc.notes.PersonalCenter.EditInformationActivity" />
         <activity android:name="com.cc.notes.PersonalCenter.ChangeManifestoActivity" />
         <activity android:name="com.cc.notes.XunHome.XunHomeActivity" />
         <activity android:name="com.cc.notes.PersonalCenter.MapTestActivity" />
         <activity android:name="com.cc.notes.ui.activity.ChatActivity" />
-        <activity android:name="com.cc.notes.ui.activity.HomeSecondActivity"></activity>
         <activity
             android:name="com.cc.notes.ui.activity.PersonalDetails"
             android:label="@string/title_activity_personal_details"
             android:theme="@style/AppTheme.NoActionBar" />
-     <activity
+        <activity
             android:name="com.cc.notes.ui.activity.IntimacyActivity"
             android:label="@string/title_activity_intimacy"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name="com.cc.notes.ui.activity.HomeSecondActivity"/>
         <activity android:name="com.cc.notes.PersonalCenter.ChangeIntroduce"></activity>
     </application>
 

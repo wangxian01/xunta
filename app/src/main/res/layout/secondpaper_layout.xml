@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     tools:ignore="Orientation">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <RelativeLayout
 
@@ -14,15 +17,16 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/image_top"
+            android:id="@+id/image_top1"
             android:layout_width="match_parent"
+            android:scaleType="centerCrop"
             android:layout_height="250dp"
             android:src="@drawable/img_avatar_06" />
 
 
         <TextView
             android:layout_marginLeft="10dp"
-            android:id="@+id/tv_name"
+            android:id="@+id/tv_name1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -32,10 +36,10 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/tv_age"
+            android:id="@+id/tv_age1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_name"
+            android:layout_below="@id/tv_name1"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/shape_age"
@@ -45,13 +49,13 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/tv_constellation"
+            android:id="@+id/tv_constellation1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_name"
+            android:layout_below="@id/tv_name1"
             android:layout_marginLeft="4dp"
             android:layout_marginTop="5dp"
-            android:layout_toRightOf="@id/tv_age"
+            android:layout_toRightOf="@id/tv_age1"
             android:background="@drawable/shape_constellation"
             android:gravity="center"
             android:text="狮子座"
@@ -62,7 +66,7 @@
             android:id="@+id/jianjie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_age"
+            android:layout_below="@id/tv_age1"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
             android:gravity="center"
@@ -157,7 +161,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="工作领域"
+            android:text="兴趣爱好"
             android:layout_alignTop="@+id/view3"
             android:layout_marginTop="10dp"
             android:textColor="#d3c8c8"/>
@@ -172,10 +176,39 @@
             android:layout_marginTop="10dp"
             android:textColor="#808181"/>
 
+        <LinearLayout
+            android:id="@+id/line2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ede9df"
+            android:layout_marginTop="25dp"
+            android:layout_alignTop="@+id/gongzuolingyu"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="个性签名"/>
+
+        </LinearLayout>
+
+            <TextView
+                android:id="@+id/gexingqianming"
+                android:layout_alignTop="@+id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="65dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="这个人很懒,什么都没留下"/>
+
+
     </RelativeLayout>
 
 
-
+    </ScrollView>
 
 
 </LinearLayout>

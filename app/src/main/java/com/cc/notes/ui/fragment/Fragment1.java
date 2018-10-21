@@ -7,12 +7,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cc.notes.XunHome.CardConfig;
@@ -24,9 +21,7 @@ import com.cc.notes.ui.activity.HomeSecondActivity;
 import com.notes.cc.notes.R;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class Fragment1 extends Fragment {
@@ -75,9 +70,8 @@ public class Fragment1 extends Fragment {
             public void onClick(int position) {
 
                 Intent intent = new Intent(getActivity(), HomeSecondActivity.class);
-                intent.putExtra("img",list.get(position));
-               // bundle.putString("id",list.get(position));
-                intent.putExtras(intent);
+                intent.putExtra("id",list.get(position));
+                //intent.putExtras(intent);
                 startActivity(intent);
             }
         });
@@ -90,8 +84,13 @@ public class Fragment1 extends Fragment {
                 viewHolder.itemView.setAlpha(1 - Math.abs(ratio) * 0.2f);
                 if (direction == CardConfig.SWIPING_LEFT) {
                     myHolder.dislikeImageView.setAlpha(Math.abs(ratio));
+
+
                 } else if (direction == CardConfig.SWIPING_RIGHT) {
                     myHolder.likeImageView.setAlpha(Math.abs(ratio));
+
+
+
                 } else {
                     myHolder.dislikeImageView.setAlpha(0f);
                     myHolder.likeImageView.setAlpha(0f);

@@ -1,10 +1,7 @@
 package com.cc.notes.adapter;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cc.notes.model.Homeinfo;
-import com.cc.notes.ui.activity.HomeSecondActivity;
 import com.notes.cc.notes.R;
 
 import java.util.List;
@@ -58,7 +54,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         avatarTextView1.setText( Homeinfo.age[list.get(position)]);
         avatarTextView2.setText(Homeinfo.hangye[list.get(position)]);
         avatarTextView3.setText(Homeinfo.xingzuo[list.get(position)]);
-
 //        avatarImageView.setImageResource(list.get(position));
         if (onItemClickListener!=null){
             holder.itemView.setOnClickListener(new View.OnClickListener() {
