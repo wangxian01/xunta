@@ -19,6 +19,9 @@ import com.cc.notes.XunHome.OnSwipeListener;
 import com.cc.notes.adapter.MyAdapter;
 import com.cc.notes.ui.activity.HomeSecondActivity;
 import com.notes.cc.notes.R;
+import com.squareup.okhttp.Request;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,10 +87,27 @@ public class Fragment1 extends Fragment {
                 viewHolder.itemView.setAlpha(1 - Math.abs(ratio) * 0.2f);
                 if (direction == CardConfig.SWIPING_LEFT) {
                     myHolder.dislikeImageView.setAlpha(Math.abs(ratio));
+new Thread(new Runnable() {
+    @Override
+    public void run() {
+        OkHttpUtils.get().addParams("phonenumber","电话号码").url("").build().execute(new StringCallback() {
+            @Override
+            public void onError(Request request, Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(String response) {
+
+            }
+        });
+    }
+}).start();
 
 
                 } else if (direction == CardConfig.SWIPING_RIGHT) {
                     myHolder.likeImageView.setAlpha(Math.abs(ratio));
+
 
 
 
