@@ -3,6 +3,7 @@ package com.cc.notes.ui.activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -56,7 +57,8 @@ public class RegisteredActivity03 extends AppCompatActivity {
                 if (editText.getText()==null || editText.getText().length()==0||editText.getText().equals("")){
                     Toast.makeText(getApplication(),"出生日期不能为空",Toast.LENGTH_SHORT).show();
                 }else{
-                            /*
+
+         /*
          * 注册接口测试
          * */
         Thread threads = new Thread(new Runnable() {
@@ -65,7 +67,7 @@ public class RegisteredActivity03 extends AppCompatActivity {
                 try {
                     OkHttpUtils
                             .get()
-                            .url("http://"+getApplicationContext().getString(R.string.netip)+":8080/XunTa/XunRegisterServlet")
+                            .url("http://"+getApplicationContext().getString(R.string.netip)+":8080/XunTa/RegisterServlet")
                             .addParams("userid", username)
                             .addParams("password", password)
                             .addParams("sex", sex)
@@ -77,7 +79,13 @@ public class RegisteredActivity03 extends AppCompatActivity {
 
             }
         });
-        threads.start();
+                    threads.start();
+                    new AlertDialog.Builder(RegisteredActivity03.this)
+                            .setTitle("注册成功！")
+                            .setMessage("注册成功！")
+                            .setPositiveButton("确定", null)
+                            .show();
+
                     Intent intent = new Intent(RegisteredActivity03.this, LoginActivity.class);
                     intent.putExtra("user",username);
                     startActivity(intent);
