@@ -117,7 +117,7 @@ public class ChatActivity extends AppCompatActivity {
 //根据你选择的用户昵称查询到该用户的id，传给接收对象
         OkHttpUtils
                 .get()
-                .url("http://192.168.1.187:8080/nicknameServlet")
+                .url("http://"+getResources().getString(R.string.netip)+":8080/Findshe/nicknameServlet")
                 .addParams("guanjianzi",getIntent().getStringExtra("nickname"))
                 .build()
                 .execute(new StringCallback() {
@@ -145,6 +145,7 @@ public class ChatActivity extends AppCompatActivity {
 
                             SharedPreferences sharedPreferences = getSharedPreferences("getuser", Context.MODE_PRIVATE);
                             String content = inputText.getText().toString();
+
                             //发送消息
                             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
                             MsgInfo xinxi=new MsgInfo(content, MsgInfo.TYPE.SENT, sharedPreferences.getString("name","13795971992"), fanhuidehaoma, "", "没有发送信息", null, "msg");
@@ -257,7 +258,6 @@ public class ChatActivity extends AppCompatActivity {
             }
             if (msg.what == 2) {
                 MsgInfo msgg = (MsgInfo) msg.obj;
-                System.out.println("收到的内容" + msgg.getContent());
                 msgList.add(new MsgInfo(msgg.getContent(), MsgInfo.TYPE.RECEIVED, null, null, null, msgg.getSendtime(), msgg.getPicture(), msgg.getFiletype()));
                 //如果有新消息，则设置适配器的长度（通知适配器，有新的数据被插入），并让 RecyclerView 定位到最后一行
                 int newSize = msgList.size() - 1;
@@ -338,9 +338,9 @@ public class ChatActivity extends AppCompatActivity {
 
                                 MsgInfo hehe=new MsgInfo(null, MsgInfo.TYPE.SENT, sharedPreferences.getString("name","13795971992"), fanhuidehaoma, "", null, File2byte(realPathFromUri), "picture");
 
-                                msgList.add(hehe);
+                               msgList.add(hehe);
 
-                                runOnUiThread(new Runnable() {
+  /*                               runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
                                         //如果有新消息，则设置适配器的长度（通知适配器，有新的数据被插入），并让 RecyclerView 定位到最后一行
@@ -348,7 +348,7 @@ public class ChatActivity extends AppCompatActivity {
                                         adapter.notifyItemInserted(newSize);
                                         msgRecyclerView.scrollToPosition(newSize);
                                     }
-                                });
+                                });*/
 
                                 //把图片发送到服务端
                                 ObjectOutputStream  oos = new ObjectOutputStream(socket.getOutputStream());

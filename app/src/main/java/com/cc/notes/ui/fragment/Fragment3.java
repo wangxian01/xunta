@@ -142,7 +142,7 @@ public class Fragment3 extends Fragment {
                         .execute(new StringCallback() {
                             @Override
                             public void onError(Request request, Exception e) {
-                                new AlertDialog.Builder(getActivity()).setMessage("网络错误！！").create().show();
+                                //new AlertDialog.Builder(getActivity()).setMessage("网络错误！！").create().show();
                             }
                             @Override
                             public void onResponse(String response) {

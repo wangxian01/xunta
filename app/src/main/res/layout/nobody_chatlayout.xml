@@ -1,59 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="#fa8287"
     android:layout_height="match_parent"
+    android:background="@color/bg_white"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_normal"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#fa8287">
-        <!--
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@mipmap/ic_launcher_round"/>-->
+        android:background="@drawable/haha"
+        android:padding="10dp">
 
         <TextView
-            android:fontFamily="casual"
-            android:layout_marginStart="120dp"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:text="关注列表"
-            android:gravity="center"/>
-        <!--
-                <ImageView
-                    android:layout_marginStart="80dp"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@mipmap/ic_launcher_round"/>-->
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="关注"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="15dp"
-        >
+        android:orientation="vertical"
+        android:padding="15dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="@drawable/shape_corners">
+            android:background="@drawable/haha">
 
 <TextView
+  android:layout_centerInParent="true"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="客官还没有关注哟！"
-    android:layout_gravity="center"
-    android:layout_marginTop="200dp"/>
+    android:textSize="15sp"
+    android:textStyle="bold"
+    android:text="客官还没有关注哟！"/>
 
-        </LinearLayout>
+
+        </RelativeLayout>
 
     </LinearLayout>
 

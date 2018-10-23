@@ -162,7 +162,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(mUserName.getText().toString().equals("13795971992")&&mUserPassword.getText().toString().equals("123")){
+                if(mUserName.getText().toString().equals("13547880537")&&mUserPassword.getText().toString().equals("123")){
 
                     //启动连接服务
                     Intent intentservice = new Intent(LoginActivity.this, SocketService.class);
@@ -172,7 +172,7 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences sharedPreferences = getSharedPreferences("getuser", Context.MODE_PRIVATE);
                     @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean("islogin",true);//设置登陆状态为TRUE
-                    editor.putString("name","13795971992");
+                    editor.putString("name","13547880537");
                     editor.apply();
 
                     //这里有三个调查页
@@ -180,7 +180,7 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this, FirsthomeActivity.class);
                     startActivity(intent);
 
-                }else if(mUserName.getText().toString().equals("18030848415")&&mUserPassword.getText().toString().equals("123")) {
+                }else if(mUserName.getText().toString().equals("13491720180")&&mUserPassword.getText().toString().equals("123")) {
 
                     //启动连接服务
                     Intent intentservice = new Intent(LoginActivity.this, SocketService.class);
@@ -190,7 +190,7 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences sharedPreferences = getSharedPreferences("getuser", Context.MODE_PRIVATE);
                     @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean("islogin",true);//设置登陆状态为TRUE
-                    editor.putString("name","18030848415");
+                    editor.putString("name","13491720180");
                     editor.apply();
 
                     //这里有三个调查页

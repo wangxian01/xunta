@@ -42,12 +42,13 @@ public class SocketService extends Service {
         new Thread(new Runnable() {
 
             String nicheng = null;
-            String shoujihao=null;
+            String shoujihao = null;
 
             @Override
             public void run() {
                 try {
-                    socket = new Socket("192.168.1.187", 8888);
+                    socket = new Socket(getResources().getString(R.string.netip), 8888);
+
 /*
                     //上线成功就把登陆状态设置为true
                     SharedPreferences sharedPreferencesm = getSharedPreferences("getuser", Context.MODE_PRIVATE);
@@ -58,13 +59,13 @@ public class SocketService extends Service {
  */
                     //获取登陆时存入的用户
                     SharedPreferences sharedPreferences = getSharedPreferences("getuser", Context.MODE_PRIVATE);
-                   shoujihao = sharedPreferences.getString("name", "13795971992");
+                    shoujihao = sharedPreferences.getString("name", "13795971992");
 
 
                     //根据手机号码查询谁上线了
                     OkHttpUtils
                             .get()
-                            .url("http://192.168.1.187:8080/nicknameServlet")
+                            .url("http://" + getResources().getString(R.string.netip) + ":8080/Findshe/nicknameServlet")
                             .addParams("guanjianzi", shoujihao)
                             .build()
                             .execute(new StringCallback() {
@@ -73,6 +74,7 @@ public class SocketService extends Service {
 
 
                                 }
+
                                 @Override
                                 public void onResponse(String response) {
 
@@ -92,8 +94,6 @@ public class SocketService extends Service {
                                             }
                                         }
                                     }).start();
-
-
                                 }
                             });
                 } catch (IOException e) {

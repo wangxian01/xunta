@@ -2,6 +2,7 @@ package com.cc.notes.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import com.notes.cc.notes.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by 青青-子衿 on 2018/1/15.
@@ -57,9 +60,14 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
     @Override
     public void onBindViewHolder(MyRecyclerViewAdapter.ViewHolder holder, int position) {
+
+
         holder.mText.setText(friendinfo.get(position).getNickname());
-        holder.ttext.setText(friendinfo.get(position).getSignature());
-        Picasso.with(mcontext).load("http://120.79.180.18/images/"+friendinfo.get(position).getAvatar_name()+".jpg").into(holder.touxiang);
+        holder.ttext.setText(friendinfo.get(position).getManifesto());
+
+        //Log.i(TAG, friendinfo.get(position).getAvatar_name());
+
+        Picasso.with(mcontext).load("http://"+mcontext.getString(R.string.netip)+":8080/Findshe/images/"+friendinfo.get(position).getPortrait()+".jpg").into(holder.touxiang);
         if (onItemClickListener != null) {
             holder.itemView.setOnClickListener(new MyOnClickListener(position));
         }

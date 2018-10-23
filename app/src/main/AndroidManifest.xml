@@ -50,6 +50,7 @@
         <activity android:name="com.cc.notes.ui.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -62,24 +63,28 @@
         <activity android:name="com.cc.notes.XunHome.XunHomeActivity" />
         <activity android:name="com.cc.notes.PersonalCenter.MapTestActivity" />
         <activity android:name="com.cc.notes.ui.activity.HomeSecondActivity" />
-
-            <activity
+        <activity
             android:name="com.cc.notes.ui.activity.ChatActivity"
             android:label="ChatActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-<activity android:name="com.cc.notes.ui.activity.FirsthomeActivity"/>
 
-        <activity
+
+      <activity android:name="com.cc.notes.ui.activity.FirsthomeActivity" />
+
+       <activity
             android:name="com.cc.notes.ui.activity.PersonalDetails"
             android:label="@string/title_activity_personal_details"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name="com.cc.notes.ui.activity.IntimacyActivity"
             android:label="@string/title_activity_intimacy"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <service android:name="com.cc.notes.Service.SocketService"
+        <service
+            android:name="com.cc.notes.Service.SocketService"
             tools:ignore="InnerclassSeparator" />
+
     </application>
 
 </manifest>

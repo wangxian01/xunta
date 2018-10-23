@@ -7,5 +7,5 @@
     <string name="menu_bottom_navigation3">个人中心</string>
     <string name="title_activity_personal_details">PersonalDetails</string>
     <string name="title_activity_intimacy">IntimacyActivity</string>
-    <string name="netip">192.168.1.187</string>
+    <string name="netip">172.17.161.219</string>
 </resources>
