@@ -1,6 +1,8 @@
 package com.cc.notes.ui.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -30,11 +32,9 @@ import java.util.List;
 public class Fragment1 extends Fragment {
 
     private List<Integer> list = new ArrayList<>();
-//    private List<String> list = new ArrayList<>();
+    //    private List<String> list = new ArrayList<>();
     private MyAdapter.OnItemClickListener listener;
     private MyAdapter adapter;
-
-
 
 
     public Fragment1() {
@@ -58,22 +58,18 @@ public class Fragment1 extends Fragment {
         View view = inflater.inflate(R.layout.activity_xun_home, null);
         initDatas();
         //initDataList();
-        final RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView);
+        final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
 
-
-
-
-
-        adapter = new MyAdapter(list,getActivity());
+        adapter = new MyAdapter(list, getActivity());
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
             @Override
             public void onClick(int position) {
 
                 Intent intent = new Intent(getActivity(), HomeSecondActivity.class);
-                intent.putExtra("id",list.get(position));
+                intent.putExtra("id", list.get(position));
                 //intent.putExtras(intent);
                 startActivity(intent);
             }
@@ -87,28 +83,52 @@ public class Fragment1 extends Fragment {
                 viewHolder.itemView.setAlpha(1 - Math.abs(ratio) * 0.2f);
                 if (direction == CardConfig.SWIPING_LEFT) {
                     myHolder.dislikeImageView.setAlpha(Math.abs(ratio));
-new Thread(new Runnable() {
-    @Override
-    public void run() {
-        OkHttpUtils.get().addParams("phonenumber","电话号码").url("").build().execute(new StringCallback() {
-            @Override
-            public void onError(Request request, Exception e) {
+                    new Thread(new Runnable() {
 
-            }
+                        //获取登陆时存入的用户
+                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("getuser", Context.MODE_PRIVATE);
 
-            @Override
-            public void onResponse(String response) {
+                        @Override
+                        public void run() {
+                            OkHttpUtils.get().addParams("phonenumber", sharedPreferences.getString("name", "13795971992")).url("http://"+getResources().getString(R.string.netip)+":8080/Findshe/AddinterestServlet").build().execute(new StringCallback() {
+                                @Override
+                                public void onError(Request request, Exception e) {
 
-            }
-        });
-    }
-}).start();
+                                }
+
+                                @Override
+                                public void onResponse(String response) {
+                                    System.out.println("成功加入关注" + sharedPreferences.getString("name", "13795971992"));
+                                }
+                            });
+                        }
+                    }).start();
 
 
                 } else if (direction == CardConfig.SWIPING_RIGHT) {
                     myHolder.likeImageView.setAlpha(Math.abs(ratio));
 
 
+/*                    new Thread(new Runnable() {
+
+                        //获取登陆时存入的用户
+                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("getuser", Context.MODE_PRIVATE);
+
+                        @Override
+                        public void run() {
+                            OkHttpUtils.get().addParams("phonenumber", sharedPreferences.getString("name", "13795971992")).url("http://"+getResources().getString(R.string.netip)+":8080/Findshe/AddinterestServlet").build().execute(new StringCallback() {
+                                @Override
+                                public void onError(Request request, Exception e) {
+
+                                }
+
+                                @Override
+                                public void onResponse(String response) {
+                                    System.out.println("成功加入关注" + sharedPreferences.getString("name", "13795971992"));
+                                }
+                            });
+                        }
+                    }).start();*/
 
 
                 } else {
@@ -145,7 +165,8 @@ new Thread(new Runnable() {
         touchHelper.attachToRecyclerView(recyclerView);
         return view;
     }
-//
+
+    //
     private void initDatas() {
 //        list.add(R.drawable.touxiang);
 //        list.add(R.drawable.img_avatar_02);

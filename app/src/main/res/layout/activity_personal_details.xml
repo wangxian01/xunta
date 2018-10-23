@@ -16,23 +16,23 @@
             android:layout_width="200dp"
             android:layout_height="150dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/linyuner1" />
+            android:src="@drawable/img10" />
 
         <ImageView
             android:id="@+id/dierzhang"
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/linyuner2" />
+            android:src="@drawable/img11" />
 
         <ImageView
             android:id="@+id/disanzhang"
-            android:layout_width="160dp"
+            android:layout_width="match_parent"
             android:layout_height="75dp"
             android:layout_marginStart="-160dp"
             android:layout_marginTop="75dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/linyuner3" />
+            android:src="@drawable/img12" />
 
     </LinearLayout>
 
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:text="我是你的关注" />
+            android:text="小璐璐" />
 
 <!--        <ImageButton
             android:layout_width="50dp"
@@ -143,7 +143,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="100dp"
-                android:text="四川泸州" />
+                android:text="上海浦东新区" />
 
 
             <LinearLayout
@@ -167,7 +167,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="140dp"
-                android:text="女主播" />
+                android:text="动漫/二次元" />
 
 
             <LinearLayout
@@ -191,7 +191,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="-60dp"
                 android:layout_marginTop="220dp"
-                android:text="既不回头，何必不忘;既然无缘，何需誓言;今日种种，似水无痕;明日何夕，君已陌路" />
+                android:text="寻找人生" />
 
 
             <LinearLayout

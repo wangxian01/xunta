@@ -280,7 +280,7 @@ public class ChatActivity extends AppCompatActivity {
                 else {
                     Bundle bundle = data.getExtras();      //获取拍摄信息
                     final Bitmap bitmap = (Bitmap) bundle.get("data");
-                    Log.i("TGAAAAAAA","高度为      "+bitmap.getHeight()+"宽度为    "+bitmap.getWidth()+"大小为  "+bitmap.getByteCount() / 1024 / 1024);
+                    //Log.i("TGAAAAAAA","高度为      "+bitmap.getHeight()+"宽度为    "+bitmap.getWidth()+"大小为  "+bitmap.getByteCount() / 1024 / 1024);
                     // mPersonalPortrait.setImageBitmap(bitmap);    //显示照片
                     //发送拍摄的图片
                    new Thread(new Runnable() {
@@ -294,24 +294,9 @@ public class ChatActivity extends AppCompatActivity {
                                 msgList.add(hehe);
                                 oos.flush();
 
-                                Message message = Message.obtain();
-                                message.obj = hehe;
-                                message.what = 3;
-                                handler.sendMessage(message);
-
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-
-                          runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    //如果有新消息，则设置适配器的长度（通知适配器，有新的数据被插入），并让 RecyclerView 定位到最后一行
-                                    int newSize = msgList.size() - 1;
-                                    adapter.notifyItemInserted(newSize);
-                                    msgRecyclerView.scrollToPosition(newSize);
-                                }
-                            });
 
                         }
                     }).start();

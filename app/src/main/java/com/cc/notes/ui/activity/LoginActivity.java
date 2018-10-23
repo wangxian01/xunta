@@ -92,64 +92,6 @@ public class LoginActivity extends AppCompatActivity {
         mLoginButton = findViewById(R.id.login_button);
 
 
-
-//        mLoginButton.setOnClickListener(new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            username = mUserName.getText().toString();
-//            password = mUserPassword.getText().toString();
-//
-//            Thread thread = new Thread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    OkHttpUtils
-//                            .get()
-//                            .url("http://"+getString(R.string.netip)+":8080/AndroidServers/xuntaServlet")
-//                            .addParams("username", username)
-//                            .addParams("password", password)
-//                            .build()
-//                            .execute(new StringCallback() {
-//                                @Override
-//                                public void onError(Call call, Exception e, int id) {
-//
-//                                }
-//
-//                                @Override
-//                                public void onResponse(String response, int id) {
-//
-//                                }
-//
-//                                public void onError(DownloadManager.Request request, Exception e) {
-//                                    Log.e(TAG, "网络错误");
-//                                }
-//
-//
-//                                public void onResponse(String response) {
-//
-//                                    if (response!= null) {
-//                                        try {
-//                                            JSONObject jsonObject = new JSONObject(response);
-//                                            String name = jsonObject.getString("username");
-//                                            Message msg = new Message();
-//                                            msg.what = 1;
-//                                            msg.obj = name;
-//                                            mHandler.sendMessage(msg);
-//                                        } catch (JSONException e) {
-//                                            e.printStackTrace();
-//                                        }
-//                                    } else {
-//                                        Message msg = new Message();
-//                                        msg.what = 0;
-//                                        mHandler.sendMessage(msg);
-//                                    }
-//                                }
-//                            });
-//
-//                }
-//            });
-//            thread.start();
-//        }
-//    });
         mLoginRegistered.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,7 +104,26 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(mUserName.getText().toString().equals("13547880537")&&mUserPassword.getText().toString().equals("123")){
+
+
+                if(mUserName.getText().toString().equals("13795971992")&&mUserPassword.getText().toString().equals("123")){
+                    //启动连接服务
+                    Intent intentservice = new Intent(LoginActivity.this, SocketService.class);
+                    startService(intentservice);
+
+                    //储存登陆用户
+                    SharedPreferences sharedPreferences = getSharedPreferences("getuser", Context.MODE_PRIVATE);
+                    @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("islogin",true);//设置登陆状态为TRUE
+                    editor.putString("name","13795971992");
+                    editor.apply();
+
+                    //这里有三个调查页
+
+                    Intent intent = new Intent(LoginActivity.this, FirsthomeActivity.class);
+                    startActivity(intent);
+
+                }else if(mUserName.getText().toString().equals("18030848415")&&mUserPassword.getText().toString().equals("123")) {
 
                     //启动连接服务
                     Intent intentservice = new Intent(LoginActivity.this, SocketService.class);
@@ -172,35 +133,12 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences sharedPreferences = getSharedPreferences("getuser", Context.MODE_PRIVATE);
                     @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean("islogin",true);//设置登陆状态为TRUE
-                    editor.putString("name","13547880537");
+                    editor.putString("name","18030848415");
                     editor.apply();
-
-                    //这里有三个调查页
 
                     Intent intent = new Intent(LoginActivity.this, FirsthomeActivity.class);
                     startActivity(intent);
-
-                }else if(mUserName.getText().toString().equals("13491720180")&&mUserPassword.getText().toString().equals("123")) {
-
-                    //启动连接服务
-                    Intent intentservice = new Intent(LoginActivity.this, SocketService.class);
-                    startService(intentservice);
-
-                    //储存登陆用户
-                    SharedPreferences sharedPreferences = getSharedPreferences("getuser", Context.MODE_PRIVATE);
-                    @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putBoolean("islogin",true);//设置登陆状态为TRUE
-                    editor.putString("name","13491720180");
-                    editor.apply();
-
-                    //这里有三个调查页
-
-                    Intent intent = new Intent(LoginActivity.this, FirsthomeActivity.class);
-                    startActivity(intent);
-
                 }
-
-
 
 
 

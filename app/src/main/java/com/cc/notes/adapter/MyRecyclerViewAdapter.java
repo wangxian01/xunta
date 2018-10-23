@@ -64,10 +64,14 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
         holder.mText.setText(friendinfo.get(position).getNickname());
         holder.ttext.setText(friendinfo.get(position).getManifesto());
+        Picasso.with(mcontext)
+                .load("http://"+mcontext.getResources().getString(R.string.netip)+":8080/Findshe/images/"+friendinfo.get(position).getPortrait().trim()+".jpg")
+                .into(holder.touxiang);
+       // Picasso.with(mcontext).load("http://"+mcontext.getResources().getString(R.string.netip)+":8080/Findshe/images/"+friendinfo.get(position).getPortrait()+".jpg").into(holder.touxiang);
 
-        //Log.i(TAG, friendinfo.get(position).getAvatar_name());
+       // String haha="http://"+mcontext.getResources().getString(R.string.netip)+":8080/Findshe/images/"+friendinfo.get(position).getPortrait()+".jpg";
+        //Log.i(TAG, "祸害大家发放麻烦啦    "+haha);
 
-        Picasso.with(mcontext).load("http://"+mcontext.getString(R.string.netip)+":8080/Findshe/images/"+friendinfo.get(position).getPortrait()+".jpg").into(holder.touxiang);
         if (onItemClickListener != null) {
             holder.itemView.setOnClickListener(new MyOnClickListener(position));
         }
