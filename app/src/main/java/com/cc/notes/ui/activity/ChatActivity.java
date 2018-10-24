@@ -78,35 +78,36 @@ public class ChatActivity extends AppCompatActivity {
         @Override
         public void onServiceDisconnected(ComponentName name) {
         }
+
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            myBinder = (SocketService.MyBinder)service;
-            socket=myBinder.getService().socket;
+            myBinder = (SocketService.MyBinder) service;
+            socket = myBinder.getService().socket;
 
             //启动循环监听从服务器发来的消息
             new ClientThread().start();
 
         }
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-
-        //开启服务
+        //绑定服务
         Intent bindIntent = new Intent(this, SocketService.class);
         bindService(bindIntent, connection, BIND_AUTO_CREATE);
 
         //System.out.println("你选择的聊天对象是：    "+getIntent().getStringExtra("nickname"));
         //内置手机存储根目录的路径
-       // path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/DCIM/1.jpg";
+        // path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/DCIM/1.jpg";
 
         final EditText inputText = findViewById(R.id.input);
         Button sendBtn = findViewById(R.id.send);
         msgRecyclerView = findViewById(R.id.msg);
 
-        TextView nizi=findViewById(R.id.yonghunicheng);
+        TextView nizi = findViewById(R.id.yonghunicheng);
         nizi.setText(getIntent().getStringExtra("nickname"));
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -114,11 +115,11 @@ public class ChatActivity extends AppCompatActivity {
         adapter = new MsgAdapter(msgList);
         msgRecyclerView.setAdapter(adapter);
 
-//根据你选择的用户昵称查询到该用户的id，传给接收对象
+        //根据你选择的用户昵称查询到该用户的id，传给接收对象
         OkHttpUtils
                 .get()
-                .url("http://"+getResources().getString(R.string.netip)+":8080/Findshe/nicknameServlet")
-                .addParams("guanjianzi",getIntent().getStringExtra("nickname"))
+                .url("http://" + getResources().getString(R.string.netip) + ":8080/Findshe/nicknameServlet")
+                .addParams("guanjianzi", getIntent().getStringExtra("nickname"))
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -128,12 +129,12 @@ public class ChatActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(String response) {
-                        fanhuidehaoma=response;
+                        fanhuidehaoma = response;
                     }
                 });
 
 
-      // new Thread(netrunnable).start();  //启动子线程
+        // new Thread(netrunnable).start();  //启动子线程
 
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,7 +149,7 @@ public class ChatActivity extends AppCompatActivity {
 
                             //发送消息
                             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-                            MsgInfo xinxi=new MsgInfo(content, MsgInfo.TYPE.SENT, sharedPreferences.getString("name","13795971992"), fanhuidehaoma, "", "没有发送信息", null, "msg");
+                            MsgInfo xinxi = new MsgInfo(content, MsgInfo.TYPE.SENT, sharedPreferences.getString("name", "13795971992"), fanhuidehaoma, "", "没有发送信息", null, "msg");
                             oos.writeObject(xinxi);
                             oos.flush();
                             if ("".equals(content))
@@ -234,7 +235,7 @@ public class ChatActivity extends AppCompatActivity {
         return buffer;
     }
 
-    private byte[] Bitmap2Bytes(Bitmap bm){
+    private byte[] Bitmap2Bytes(Bitmap bm) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
         return baos.toByteArray();
@@ -271,25 +272,24 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK){
-            if(requestCode == REQ){
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-                {
-                    ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
-                }
-                else {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == REQ) {
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                } else {
                     Bundle bundle = data.getExtras();      //获取拍摄信息
                     final Bitmap bitmap = (Bitmap) bundle.get("data");
                     //Log.i("TGAAAAAAA","高度为      "+bitmap.getHeight()+"宽度为    "+bitmap.getWidth()+"大小为  "+bitmap.getByteCount() / 1024 / 1024);
                     // mPersonalPortrait.setImageBitmap(bitmap);    //显示照片
+
                     //发送拍摄的图片
-                   new Thread(new Runnable() {
+                    new Thread(new Runnable() {
                         @Override
                         public void run() {
                             try {
                                 SharedPreferences sharedPreferences = getSharedPreferences("getuser", Context.MODE_PRIVATE);
-                                ObjectOutputStream   oos = new ObjectOutputStream(socket.getOutputStream());
-                                MsgInfo hehe=new MsgInfo(null, MsgInfo.TYPE.SENT, sharedPreferences.getString("name","13795971992"), fanhuidehaoma, null, null, Bitmap2Bytes(bitmap), "picture");
+                                ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+                                MsgInfo hehe = new MsgInfo(null, MsgInfo.TYPE.SENT, sharedPreferences.getString("name", "13795971992"), fanhuidehaoma, "", null, Bitmap2Bytes(bitmap), "picture");
                                 oos.writeObject(hehe);
                                 msgList.add(hehe);
                                 oos.flush();
@@ -305,13 +305,11 @@ public class ChatActivity extends AppCompatActivity {
                 }
 
                 //从相册获取图片发送
-            }else if(requestCode == REQ_2){
+            } else if (requestCode == REQ_2) {
                 //final Uri imageUri = data.getData();
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-                {
-                    ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
-                }
-                else{
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                } else {
 
                     final String realPathFromUri = RealPathFromUriUtils.getRealPathFromUri(this, data.getData());
 
@@ -321,9 +319,9 @@ public class ChatActivity extends AppCompatActivity {
                             try {
                                 SharedPreferences sharedPreferences = getSharedPreferences("getuser", Context.MODE_PRIVATE);
 
-                                MsgInfo hehe=new MsgInfo(null, MsgInfo.TYPE.SENT, sharedPreferences.getString("name","13795971992"), fanhuidehaoma, "", null, File2byte(realPathFromUri), "picture");
+                                MsgInfo hehe = new MsgInfo(null, MsgInfo.TYPE.SENT, sharedPreferences.getString("name", "13795971992"), fanhuidehaoma, "", null, File2byte(realPathFromUri), "picture");
 
-                               msgList.add(hehe);
+                                msgList.add(hehe);
 
   /*                               runOnUiThread(new Runnable() {
                                     @Override
@@ -336,10 +334,9 @@ public class ChatActivity extends AppCompatActivity {
                                 });*/
 
                                 //把图片发送到服务端
-                                ObjectOutputStream  oos = new ObjectOutputStream(socket.getOutputStream());
+                                ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
                                 oos.writeObject(hehe);
                                 oos.flush();
-
 
 
                             } catch (IOException e) {
@@ -349,7 +346,9 @@ public class ChatActivity extends AppCompatActivity {
                         }
                     }).start();
                     // mPersonalPortrait.setImageURI(imageUri);
-                    dialog.dismiss(); };
+                    dialog.dismiss();
+                }
+                ;
             }
         }
     }
@@ -360,10 +359,10 @@ public class ChatActivity extends AppCompatActivity {
         @Override
         public void run() {
 
-                //socket = new Socket("172.17.162.160", 8888);
+            //socket = new Socket("172.17.162.160", 8888);
 
-                //启动循环监听从服务器发来的消息
-              new ClientThread().start();
+            //启动循环监听从服务器发来的消息
+            new ClientThread().start();
 
  /*                 //向服务器发送上线信息
                 ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
@@ -407,10 +406,10 @@ public class ChatActivity extends AppCompatActivity {
                 /*动态获取权限*/
                 if (Build.VERSION.SDK_INT >= 23) {
                     int checkCallPhonePermission = ContextCompat.checkSelfPermission(ChatActivity.this, Manifest.permission.CAMERA);
-                    if(checkCallPhonePermission != PackageManager.PERMISSION_GRANTED){
-                        ActivityCompat.requestPermissions(ChatActivity.this,new String[]{Manifest.permission.CAMERA},222);
+                    if (checkCallPhonePermission != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(ChatActivity.this, new String[]{Manifest.permission.CAMERA}, 222);
                         return;
-                    }else{
+                    } else {
                         startActivityForResult(intent, REQ);  //启动系统相机
                     }
                 } else {
@@ -423,7 +422,7 @@ public class ChatActivity extends AppCompatActivity {
         dialog.show();
     }
 
-//把Cursor的路径转化为存储路径
+    //把Cursor的路径转化为存储路径
     public static class RealPathFromUriUtils {
         /**
          * 根据Uri获取图片的绝对路径
@@ -517,6 +516,7 @@ public class ChatActivity extends AppCompatActivity {
         private static boolean isMediaDocument(Uri uri) {
             return "com.android.providers.media.documents".equals(uri.getAuthority());
         }
+
         /**
          * @param uri the Uri to check
          * @return Whether the Uri authority is DownloadsProvider
@@ -525,6 +525,7 @@ public class ChatActivity extends AppCompatActivity {
             return "com.android.providers.downloads.documents".equals(uri.getAuthority());
         }
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

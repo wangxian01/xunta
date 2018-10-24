@@ -57,7 +57,7 @@ public class SocketService extends Service {
                     //Log.e(TAG, "onCreateView: "+ sharedPreferences.getBoolean("islogin",false));
 
  */
-                    //获取登陆时存入的用户
+                    //获取登陆时存入的用户的手机号
                     SharedPreferences sharedPreferences = getSharedPreferences("getuser", Context.MODE_PRIVATE);
                     shoujihao = sharedPreferences.getString("name", "13795971992");
 
@@ -72,12 +72,9 @@ public class SocketService extends Service {
                                 @Override
                                 public void onError(Request request, Exception e) {
 
-
                                 }
-
                                 @Override
                                 public void onResponse(String response) {
-
                                     nicheng = response;
                                     new Thread(new Runnable() {
                                         @Override
@@ -106,7 +103,7 @@ public class SocketService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.e(TAG, "成功连接到服务器。。。。。。。。。 ");
+       /// Log.e(TAG, "成功连接到服务器。。。。。。。。。 ");
         return super.onStartCommand(intent, flags, startId);
     }
 
