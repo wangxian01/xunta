@@ -102,8 +102,8 @@ public class Fragment3 extends Fragment {
         mPersonalBirthday = (TextView)view. findViewById(R.id.personal_birthday);
         mPersonalIntroduce = (TextView) view.findViewById(R.id.personal_introduce);
         mPersonalMysc = (RelativeLayout) view.findViewById(R.id.personal_mysc);
-        mPersonalScimg = (ImageView)view. findViewById(R.id.personal_scimg);
-        mPersonalMyscnext = (ImageView) view.findViewById(R.id.personal_myscnext);
+        //mPersonalScimg = (ImageView)view. findViewById(R.id.personal_scimg);
+        //mPersonalMyscnext = (ImageView) view.findViewById(R.id.personal_myscnext);
         mPersonalMybj = (RelativeLayout) view.findViewById(R.id.personal_mybj);
         mPersonalBjimg = (ImageView) view.findViewById(R.id.personal_bjimg);
 
@@ -141,7 +141,7 @@ public class Fragment3 extends Fragment {
                         .execute(new StringCallback() {
                             @Override
                             public void onError(Request request, Exception e) {
-                                new AlertDialog.Builder(getActivity()).setMessage("网络错误！！").create().show();
+                                // new AlertDialog.Builder(getActivity()).setMessage("网络错误！！").create().show();
                             }
                             @Override
                             public void onResponse(String response) {
@@ -151,7 +151,7 @@ public class Fragment3 extends Fragment {
                                     userBeans = gson.fromJson(response.toString(), new TypeToken<ArrayList<UserBean>>() {
                                     }.getType());
                                     Bitmap bitmap = stringToBitmap(userBeans.get(0).getPortrait());
-                                   // Log.e("测试：", String.valueOf(bitmap));
+                                    // Log.e("测试：", String.valueOf(bitmap));
                                     //Log.e("测试：", userBeans.get(0).getPortrait());
                                     mPersonalPortrait.setImageBitmap(bitmap);
                                     mPersonalSex.setText(userBeans.get(0).getSex());
@@ -244,21 +244,21 @@ public class Fragment3 extends Fragment {
                 Bundle bundle = data.getExtras();      //获取拍摄信息
                 Bitmap bitmap = (Bitmap) bundle.get("data");
                 final String bitStrig = bitmapToString(bitmap);
-                        Thread threads = new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                            try {
-                                OkHttpUtils
-                                .get()
-                                .url("http://"+getString(R.string.netip)+":8080/XunTa/ChangePortrait")
-                                .addParams("userid", "10086")//模拟修改头像编号10086
-                                .addParams("Portrait", bitStrig)
-                                .build().execute();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                                } }
-                        });
-                    threads.start();
+                Thread threads = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            OkHttpUtils
+                                    .get()
+                                    .url("http://"+getString(R.string.netip)+":8080/XunTa/ChangePortrait")
+                                    .addParams("userid", "10086")//模拟修改头像编号10086
+                                    .addParams("Portrait", bitStrig)
+                                    .build().execute();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } }
+                });
+                threads.start();
                 //Log.e("测试：", String.valueOf(bitStrig));
                 //Bitmap bitmaps = stringToBitmap(bitStrig);
                 mPersonalPortrait.setImageBitmap(bitmap);    //显示照片
@@ -281,7 +281,7 @@ public class Fragment3 extends Fragment {
                             OkHttpUtils
                                     .get()
                                     .url("http://"+getString(R.string.netip)+":8080/XunTa/ChangePortrait")
-                                    .addParams("userid", "10086")//模拟修改头像编号10086
+                                    .addParams("userid", "123456")//模拟修改头像编号10086
                                     .addParams("Portrait", bitStrig)
                                     .build().execute();
                         } catch (IOException e) {
@@ -297,8 +297,8 @@ public class Fragment3 extends Fragment {
     }
 
     /*
-    *将bitmap转换成string
-    */
+     *将bitmap转换成string
+     */
     public String bitmapToString(Bitmap bitmap){
         //将Bitmap转换成字符串
         String string=null;
