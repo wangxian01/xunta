@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cc.notes.ui.activity.PersonalDetails"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.cc.notes.ui.activity.PersonalDetails">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,90 +12,70 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:scaleType="centerCrop"
             android:id="@+id/diyizhang"
             android:layout_width="200dp"
             android:layout_height="150dp"
-            android:src="@drawable/linyuner1"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/img10" />
 
         <ImageView
-            android:scaleType="centerCrop"
             android:id="@+id/dierzhang"
             android:layout_width="match_parent"
             android:layout_height="75dp"
-            android:src="@drawable/linyuner2"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/img11" />
 
         <ImageView
-            android:scaleType="centerCrop"
             android:id="@+id/disanzhang"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
             android:layout_marginStart="-160dp"
             android:layout_marginTop="75dp"
-            android:layout_width="160dp"
-            android:layout_height="75dp"
-            android:src="@drawable/linyuner3"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/img12" />
 
     </LinearLayout>
 
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="100dp"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <com.cc.notes.PersonalCenter.CircularImageView
             android:id="@+id/touxiang2"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:layout_marginTop="100dp"
-            android:src="@drawable/touxiang"
-            />
+            android:layout_marginTop="150dp"
+            android:src="@drawable/touxiang" />
 
-<TextView
-    android:layout_marginTop="10dp"
-    android:layout_gravity="center"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="我是你的关注"/>
-
-<!--        <ImageView
-            android:layout_marginTop="160dp"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@mipmap/ic_launcher_round"/>-->
+            android:layout_marginTop="10dp"
+            android:text="小璐璐" />
 
-<!--        <com.cc.notes.PersonalCenter.CircularImageView
-            android:layout_marginTop="160dp"
-            android:layout_gravity="center"
-            android:id="@+id/roundImageView"
+<!--        <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@mipmap/ic_launcher"
-            />-->
-
-
+            android:layout_marginTop="50dp" />
 
         <ImageButton
-            android:layout_marginTop="50dp"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            />
-
-        <ImageButton
-            android:layout_marginTop="-50dp"
             android:layout_marginStart="50dp"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            />
+            android:layout_marginTop="-50dp" />-->
+
     </LinearLayout>
 
     <LinearLayout
-        android:background="#50FFFFFF"
         android:layout_width="261dp"
         android:layout_height="match_parent"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="-417dp"
+        android:layout_marginTop="-500dp"
+        android:background="#50FFFFFF"
         android:orientation="vertical"
         android:padding="40dp">
 
@@ -108,120 +87,121 @@
             tools:ignore="UselessParent">
 
             <TextView
-                android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="账号  "/>
+                android:layout_marginTop="20dp"
+                android:text="账号  " />
 
             <TextView
-                android:layout_marginTop="20dp"
+                android:id="@+id/zhanghao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="13795971992"/>
+                android:layout_marginTop="20dp"
+                android:text="13795971992" />
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
                 android:layout_marginLeft="-120dp"
                 android:layout_marginTop="50dp"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/colorTextGrey"/>
+                android:background="@color/colorTextGrey" />
 
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="-180dp"
                 android:layout_marginTop="60dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="性别  "/>
+                android:text="性别  " />
 
 
             <TextView
-                android:layout_marginTop="60dp"
+                android:id="@+id/xingbie"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="女"/>
+                android:layout_marginTop="60dp"
+                android:text="女" />
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
                 android:layout_marginLeft="-120dp"
                 android:layout_marginTop="90dp"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/colorTextGrey"/>
+                android:background="@color/colorTextGrey" />
 
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="-180dp"
                 android:layout_marginTop="100dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="地址  "/>
+                android:text="地址  " />
 
 
             <TextView
-                android:layout_marginTop="100dp"
+                android:id="@+id/dizhi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="四川泸州"/>
+                android:layout_marginTop="100dp"
+                android:text="上海浦东新区" />
 
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
                 android:layout_marginLeft="-120dp"
                 android:layout_marginTop="130dp"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/colorTextGrey"/>
+                android:background="@color/colorTextGrey" />
 
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="-180dp"
                 android:layout_marginTop="140dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="职业  "/>
+                android:text="职业  " />
 
 
             <TextView
-                android:layout_marginTop="140dp"
+                android:id="@+id/zhiye"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="女主播"/>
+                android:layout_marginTop="140dp"
+                android:text="动漫/二次元" />
 
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
                 android:layout_marginLeft="-120dp"
                 android:layout_marginTop="170dp"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/colorTextGrey"/>
+                android:background="@color/colorTextGrey" />
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="-180dp"
                 android:layout_marginTop="180dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="我对你说  "/>
+                android:text="我对你说  " />
 
 
             <TextView
-                android:layout_marginStart="-60dp"
-                android:layout_marginTop="220dp"
+                android:id="@+id/xuanyan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="既不回头，何必不忘;既然无缘，何需誓言;今日种种，似水无痕;明日何夕，君已陌路"/>
+                android:layout_marginStart="-60dp"
+                android:layout_marginTop="220dp"
+                android:text="寻找人生" />
 
 
             <LinearLayout
-                android:layout_marginLeft="-200dp"
-                android:layout_marginTop="300dp"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/colorTextGrey"/>
+                android:layout_marginLeft="-200dp"
+                android:layout_marginTop="300dp"
+                android:background="@color/colorTextGrey" />
 
         </LinearLayout>
-
-
-
-
 
     </LinearLayout>
 

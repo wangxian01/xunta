@@ -1,20 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#d8e0e8"
-    >
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_normal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#fa8287"
+        android:layout_gravity="">
+
+<!--        <ImageView
+            android:id="@+id/liaotianfanhui"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/backicon" />-->
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:id="@+id/yonghunicheng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户昵称"
+            android:textColor="@color/bg_white"
+            android:textSize="18sp" />
+
+
+    </android.support.v7.widget.Toolbar>
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/msg"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:background="@color/bg_white" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/bg_white">
 
         <EditText
             android:id="@+id/input"
@@ -22,22 +51,21 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="请输入"
-            android:maxLines="2"
-            />
+            android:maxLines="2" />
 
         <Button
             android:id="@+id/send"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="发送"
-            />
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:background="@drawable/sendicon" />
 
         <ImageButton
             android:id="@+id/sendpic"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
             android:layout_gravity="center"
-            android:layout_width="50dp"
-            android:layout_height="40dp"
-            android:tooltipText="图片"/>
+            android:background="@drawable/sendpic"
+            android:tooltipText="图片" />
 
     </LinearLayout>
 

@@ -7,17 +7,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cc.notes.model.UserBean;
 import com.google.gson.Gson;
@@ -34,19 +31,16 @@ import java.util.ArrayList;
 
 
 public class LoginActivity extends AppCompatActivity {
-    private TextView mLoginRegistered;
-    private Button mLoginButton;
-    private EditText mUserName;
-    private CheckBox rememberPass;
-    private EditText mUserPassword;
-    private SharedPreferences pref;
-    private SharedPreferences.Editor editor;
-    private boolean aBoolean;
-    private OkHttpClient client = new OkHttpClient();
-    public static final MediaType JSON
+private TextView mLoginRegistered;
+private Button mLoginButton;
+private EditText mUserName;
+private EditText mUserPassword;
+private boolean aBoolean;
+private OkHttpClient client = new OkHttpClient();
+public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
 
-    private String username, password;
+private String username, password;
 
 //    @SuppressLint("HandlerLeak")
 //    private Handler mHandler = new Handler() {      //接收其他子线程的消息
@@ -87,30 +81,6 @@ public class LoginActivity extends AppCompatActivity {
         mUserName = (EditText) findViewById(R.id.user_name);
         mUserPassword = (EditText) findViewById(R.id.user_password);
         mLoginButton = (Button) findViewById(R.id.login_button);
-        rememberPass=(CheckBox)findViewById(R.id.remember_password);
-        pref= PreferenceManager.getDefaultSharedPreferences(this);
-        boolean isRemenber=pref.getBoolean("remember_password",false);
-        if(isRemenber){
-            //将账号和密码都设置到文本中
-            String account=pref.getString("account","");
-            String password=pref.getString("password","");
-            mUserName.setText(account);
-            mUserPassword.setText(password);
-            rememberPass.setChecked(true);
-            boolean isRemember=pref.getBoolean("remember_password",false);
-            if(isRemenber){
-                //将账号和密码都设置到文本中
-                String  user_name=pref.getString("user_name","");
-                String user_password=pref.getString("user_password","");
-                mUserName.setText(account);
-                mUserPassword.setText(password);
-                rememberPass.setChecked(true);
-
-            }
-        }
-
-        //blog.csdn.net/zhang_sn001/article/details/70058802
-
 //        mLoginButton.setOnClickListener(new View.OnClickListener() {
 //        @Override
 //        public void onClick(View v) {
@@ -169,43 +139,63 @@ public class LoginActivity extends AppCompatActivity {
 //            thread.start();
 //        }
 //    });
-
-//        SharedPreferences sharedPreferences=getSharedPreferences("jzd",Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        editor.putString("password", password);
-//        editor.commit();//提交修改
         mLoginRegistered.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, RegisteredActivity.class);
-                startActivity(intent);
-            }
-        });
+                                            @Override
+                                            public void onClick(View v) {
+                                                Intent intent = new Intent(LoginActivity.this, RegisteredActivity.class);
+                                                startActivity(intent);
+                                            }
+                                        });
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                String account=mUserName.getText().toString();
-                String password=mUserPassword.getText().toString();
-                //如果账号是admin且密码是123456就认为登陆成功
-                if(account.equals(account)&&password.equals(password)){
-                    editor=pref.edit();
-                    if(rememberPass.isChecked()){
-                        editor.putBoolean("remember_password",true);
-                        editor.putString("account",account);
-                        editor.putString("password",password);
-                    }else {
-                        editor.clear();
+            public void onClick(View v) {
+//                Intent intent = new Intent(LoginActivity.this, FirsthomeActivity.class);
+//                startActivity(intent);
+                Thread thread = new Thread(){
+                    @Override
+                    public void run() {
+                        super.run();
+                        try {
+                            String restult = post("http://"+getString(R.string.netip)+":8080/XunTa/LoginServlet","");
+                            Gson gson = new Gson();
+                            ArrayList<UserBean> userBeans = gson.fromJson(restult,new TypeToken<ArrayList<UserBean>>() {
+                            }.getType());
+                            for(int i = 0  ;i < userBeans.size();i++){
+                                if(String.valueOf(mUserName.getText()).equals(userBeans.get(i).getUserid().trim()) && String.valueOf(mUserPassword.getText()).equals(userBeans.get(i).getPassword().trim())){
+                                    aBoolean = true;
+                                    break;
+                                }else {
+                                    aBoolean = false;
+                                }
+
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
-                    editor.apply();
-                    Intent intent=new Intent(LoginActivity.this,FirsthomeActivity.class);
+                };
+                thread.start();
+                try {
+                    thread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                if (aBoolean == true){
+                    Intent intent = new Intent(LoginActivity.this, FirsthomeActivity.class);
                     startActivity(intent);
-                    finish();
                 }else{
-                    Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
+                    new AlertDialog.Builder(LoginActivity.this)
+                            .setTitle("用户名或密码有误！")
+                            .setMessage("请输入！")
+                            .setPositiveButton("确定", null)
+                            .show();
                 }
             }
-        });}
+        });
+
+}
 
     /**
      * post请求*/

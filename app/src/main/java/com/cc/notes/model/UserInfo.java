@@ -2,31 +2,47 @@ package com.cc.notes.model;
 
 public class UserInfo {
 
-    private String Avatar_name;
-    private String nickname;
-    private String signature;
+    /**
+     * id : 1
+     * Nickname : jaky
+     * Portrait : jaky
+     * Manifesto : 傻逼你好
+     */
 
-    public String getAvatar_name() {
-        return Avatar_name;
+    private String id;
+    private String Nickname;
+    private String Portrait;
+    private String Manifesto;
+
+    public String getId() {
+        return id;
     }
 
-    public void setAvatar_name(String Avatar_name) {
-        this.Avatar_name = Avatar_name;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNickname() {
-        return nickname;
+        return Nickname;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setNickname(String Nickname) {
+        this.Nickname = Nickname;
     }
 
-    public String getSignature() {
-        return signature;
+    public String getPortrait() {
+        return Portrait;
     }
 
-    public void setSignature(String signature) {
-        this.signature = signature;
+    public void setPortrait(String Portrait) {
+        this.Portrait = Portrait;
+    }
+
+    public String getManifesto() {
+        return Manifesto;
+    }
+
+    public void setManifesto(String Manifesto) {
+        this.Manifesto = Manifesto;
     }
 }
