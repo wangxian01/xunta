@@ -49,16 +49,19 @@
             android:theme="@style/AppTheme.NoActionBar" />
        <!-- <activity android:name="com.cc.notes.ui.activity.FirsthomeActivity">-->
 
-      <!--  </activity>-->
+
+        <activity android:name="com.cc.notes.test">
+
+        </activity>
         <activity android:name="com.cc.notes.ui.activity.FirsthomeActivity">
+
+        </activity>
+        <activity android:name="com.cc.notes.ui.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name="com.cc.notes.test">
-
         </activity>
         <activity android:name="com.cc.notes.ui.activity.RegisteredActivity"/>
         <activity android:name="com.cc.notes.ui.activity.RegisteredActivity01"/>

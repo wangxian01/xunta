@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cc.notes.ui.activity.RegisteredActivity03;
 import com.notes.cc.notes.R;
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -78,6 +79,15 @@ public class EditInformationActivity extends AppCompatActivity {
         mEditIntroducelayout = (RelativeLayout) findViewById(R.id.edit_introducelayout);
         mEditIntroducetext = (TextView) findViewById(R.id.edit_introducetext);
         mSaveButton = (Button) findViewById(R.id.save_button);
+
+//        mSaveButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.e("测试：", "数据");
+//
+//            }
+//        });
+
 
         Intent intent_get = getIntent();
         mManifestoString = intent_get.getStringExtra("mManifestoString");
@@ -190,6 +200,8 @@ public class EditInformationActivity extends AppCompatActivity {
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(EditInformationActivity.this, "保存成功！" , Toast.LENGTH_SHORT).show();
+                finish();
                 Thread threads = new Thread(new Runnable() {
                     @Override
                     public void run() {

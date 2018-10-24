@@ -102,8 +102,8 @@ public class Fragment3 extends Fragment {
         mPersonalBirthday = (TextView)view. findViewById(R.id.personal_birthday);
         mPersonalIntroduce = (TextView) view.findViewById(R.id.personal_introduce);
         mPersonalMysc = (RelativeLayout) view.findViewById(R.id.personal_mysc);
-        mPersonalScimg = (ImageView)view. findViewById(R.id.personal_scimg);
-        mPersonalMyscnext = (ImageView) view.findViewById(R.id.personal_myscnext);
+        //mPersonalScimg = (ImageView)view. findViewById(R.id.personal_scimg);
+        //mPersonalMyscnext = (ImageView) view.findViewById(R.id.personal_myscnext);
         mPersonalMybj = (RelativeLayout) view.findViewById(R.id.personal_mybj);
         mPersonalBjimg = (ImageView) view.findViewById(R.id.personal_bjimg);
 
@@ -141,7 +141,7 @@ public class Fragment3 extends Fragment {
                         .execute(new StringCallback() {
                             @Override
                             public void onError(Request request, Exception e) {
-                                new AlertDialog.Builder(getActivity()).setMessage("网络错误！！").create().show();
+                               // new AlertDialog.Builder(getActivity()).setMessage("网络错误！！").create().show();
                             }
                             @Override
                             public void onResponse(String response) {
@@ -281,7 +281,7 @@ public class Fragment3 extends Fragment {
                             OkHttpUtils
                                     .get()
                                     .url("http://"+getString(R.string.netip)+":8080/XunTa/ChangePortrait")
-                                    .addParams("userid", "10086")//模拟修改头像编号10086
+                                    .addParams("userid", "123456")//模拟修改头像编号10086
                                     .addParams("Portrait", bitStrig)
                                     .build().execute();
                         } catch (IOException e) {

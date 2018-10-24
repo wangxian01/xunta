@@ -19,14 +19,14 @@
             android:layout_marginTop="35dp"
             android:layout_gravity="center"
             android:id="@+id/personal_portrait"
-            android:src="@drawable/touxiang"
+            android:src="@drawable/nanshengtouxiang"
             android:layout_width="130dp"
             android:layout_height="130dp" />
 
         <TextView
             android:layout_marginTop="5dp"
             android:id="@+id/personal_name"
-            android:text="liny"
+            android:text="张先森"
             android:textSize="15dp"
             android:textStyle="bold"
             android:textColor="#000000"
@@ -84,7 +84,7 @@
             <TextView
                 android:gravity="center"
                 android:id="@+id/personal_sex"
-                android:text="女"
+                android:text="男"
                 android:textSize="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent" />
@@ -199,7 +199,7 @@
         android:layout_height="wrap_content"
         android:maxLines="3"
         android:ellipsize="end"
-        android:text="我不算漂亮,但看着也算舒服,所以你呢,也不用有多帅,看着顺眼就行了.我个头不算高,但穿高跟鞋也能挤进170的队伍 所以你呢 比我穿高跟鞋再高点就行了.我身材不算好,但比例绝对标准,所以你呢,不用身材有多好 比例标准就行了.我收入不高,但养活自己没问题 所以你呢 如果哪天我不幸失业了 能养活咱俩就行了"/>
+        android:text="我不算帅,但看着也算舒服,所以你呢,也不用有多帅,看着顺眼就行了.我个头不算高,但穿高跟鞋也能挤进170的队伍 所以你呢 比我穿高跟鞋再高点就行了.我身材不算好,但比例绝对标准,所以你呢,不用身材有多好 比例标准就行了.我收入不高,但养活自己没问题 所以你呢 如果哪天我不幸失业了 能养活咱俩就行了"/>
     </LinearLayout>
 
     <LinearLayout

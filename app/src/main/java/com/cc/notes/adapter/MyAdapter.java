@@ -1,7 +1,10 @@
 package com.cc.notes.adapter;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +21,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private List<Integer> list;
     private Activity activity;
     private Map<String, Object> map;
+    private List<Map<String,Object>> dataList;
 
-    public MyAdapter(List<Integer> list, Activity activity) {
+    public MyAdapter(List<Integer> list, Activity activity, List<Map<String, Object>> dataList) {
         this.list = list;
         this.activity = activity;
+        this.dataList = dataList;
     }
 
     private OnItemClickListener onItemClickListener;
@@ -44,16 +49,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         TextView avatarTextView1 = ((MyViewHolder) holder).tv_age;
         TextView avatarTextView2 = ((MyViewHolder) holder).tv_hangye;
         TextView avatarTextView3 = ((MyViewHolder) holder).tv_xingzuo;
-        System.out.println(position);
 
         // 获取数据显示在各组件
-        avatarImageView.setImageResource(Homeinfo.img[list.get(position)]);
+        //avatarImageView.setImageResource(Homeinfo.img[list.get(position)]);
+        final Map<String, Object> map = dataList.get(list.get(position));
         // Log.e("测试", "数据"+(String) map.get("name"));
-
-        ((MyViewHolder) holder).tv_name.setText(Homeinfo.name[list.get(position)]);
-        avatarTextView1.setText( Homeinfo.age[list.get(position)]);
-        avatarTextView2.setText(Homeinfo.hangye[list.get(position)]);
-        avatarTextView3.setText(Homeinfo.xingzuo[list.get(position)]);
+        Bitmap bitmap = stringToBitmap((String)map.get("img"));
+        // Log.e("测试：", String.valueOf(bitmap));
+        //Log.e("测试：", userBeans.get(0).getPortrait());
+        avatarImageView.setImageBitmap(bitmap);
+        ((MyViewHolder) holder).tv_name.setText((String)map.get("name"));
+//        ((MyViewHolder) holder).tv_name.setText(Homeinfo.name[list.get(position)]);
+//        avatarTextView1.setText( Homeinfo.age[list.get(position)]);
+//        avatarTextView2.setText(Homeinfo.hangye[list.get(position)]);
+//        avatarTextView3.setText(Homeinfo.xingzuo[list.get(position)]);
 //        avatarImageView.setImageResource(list.get(position));
         if (onItemClickListener!=null){
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +90,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public TextView tv_xingzuo;
         public TextView tv_hangye;
 
-
         public  MyViewHolder(View itemView) {
             super(itemView);
             avatarImageView = (ImageView) itemView.findViewById(R.id.iv_avatar);
@@ -96,6 +104,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public interface OnItemClickListener{
         void onClick(int position);
+    }
+
+    /**
+     * 将字符串转换成Bitmap类型
+     * */
+    public Bitmap stringToBitmap(String string) {
+        Bitmap bitmap = null;
+        try {
+            byte[] bitmapArray;
+            bitmapArray = Base64.decode(string, Base64.URL_SAFE);
+            bitmap = BitmapFactory.decodeByteArray(bitmapArray, 0,
+                    bitmapArray.length);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bitmap;
     }
 }
 

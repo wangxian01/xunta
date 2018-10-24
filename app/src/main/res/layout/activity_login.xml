@@ -72,6 +72,7 @@
                     android:id="@+id/remember_password"/>
 
                 <TextView
+                    android:id="@id/remember_password"
                     android:textColor="#fff"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

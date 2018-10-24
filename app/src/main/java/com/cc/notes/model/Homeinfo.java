@@ -35,10 +35,8 @@ public class Homeinfo {
             "失望，有时候也是一种幸福，因为有所期待所以才会失望。因为有爱，才会有期待，所以纵使失望，也是一种幸福，虽然这种幸福有点痛。",
             "找一个陪伴，看看末日风景也好；找一个人来爱，暖暖末日心酸多High！2016正走来，快快说出你的爱，找到你的Mr。Right！"};
 
-
     public static Integer img[]= {
             R.drawable.image1, R.drawable.image2, R.drawable.image3, R.drawable.image4, R.drawable.image5, R.drawable.image7, R.drawable.image8};
-
 
 
     public static Integer img2[]={
