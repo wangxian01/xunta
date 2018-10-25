@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cc.notes.ui.activity.FirsthomeActivity;
 import com.cc.notes.ui.activity.RegisteredActivity03;
 import com.notes.cc.notes.R;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -201,7 +202,6 @@ public class EditInformationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(EditInformationActivity.this, "保存成功！" , Toast.LENGTH_SHORT).show();
-                finish();
                 Thread threads = new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -224,6 +224,9 @@ public class EditInformationActivity extends AppCompatActivity {
                         } }
                 });
                 //threads.start();
+                Intent intent =new Intent(EditInformationActivity.this,FirsthomeActivity.class);
+                //intent.putExtra("fragid",3);
+                startActivity(intent);
             }
         });
 

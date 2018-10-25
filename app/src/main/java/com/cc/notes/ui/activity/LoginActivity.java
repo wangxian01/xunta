@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.cc.notes.Service.SocketService;
 import com.cc.notes.model.UserBean;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -152,7 +153,48 @@ private String username, password;
             public void onClick(View v) {
 //                Intent intent = new Intent(LoginActivity.this, FirsthomeActivity.class);
 //                startActivity(intent);
-                Thread thread = new Thread(){
+
+                if(mUserName.getText().toString().equals("13795971992")&&mUserPassword.getText().toString().equals("123")){
+                    //启动连接服务
+                    Intent intentservice = new Intent(LoginActivity.this, SocketService.class);
+                    startService(intentservice);
+
+                    //储存登陆用户
+                    SharedPreferences sharedPreferences = getSharedPreferences("getuser", Context.MODE_PRIVATE);
+                    @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("islogin",true);//设置登陆状态为TRUE
+                    editor.putString("name","13795971992");
+                    editor.apply();
+
+                    Intent intent = new Intent(LoginActivity.this, FirsthomeActivity.class);
+                    startActivity(intent);
+
+                }else if(mUserName.getText().toString().equals("18030848415")&&mUserPassword.getText().toString().equals("123")) {
+
+                    //启动连接服务
+                    Intent intentservice = new Intent(LoginActivity.this, SocketService.class);
+                    startService(intentservice);
+
+                    //储存登陆用户
+                    SharedPreferences sharedPreferences = getSharedPreferences("getuser", Context.MODE_PRIVATE);
+                    @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("islogin", true);//设置登陆状态为TRUE
+                    editor.putString("name", "18030848415");
+                    editor.apply();
+
+                    Intent intent = new Intent(LoginActivity.this, FirsthomeActivity.class);
+                    startActivity(intent);
+
+
+                }
+
+
+
+
+
+
+
+/*                Thread thread = new Thread(){
                     @Override
                     public void run() {
                         super.run();
@@ -191,7 +233,7 @@ private String username, password;
                             .setMessage("请输入！")
                             .setPositiveButton("确定", null)
                             .show();
-                }
+                }*/
             }
         });
 

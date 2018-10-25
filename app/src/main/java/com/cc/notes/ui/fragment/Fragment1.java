@@ -1,12 +1,15 @@
 package com.cc.notes.ui.fragment;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +33,7 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -79,15 +83,21 @@ public class Fragment1 extends Fragment {
 
                 Intent intent = new Intent(getActivity(), HomeSecondActivity.class);
                 final Map<String, Object> maps = dataList.get(list.get(position));
-                Log.e("测试：", (String)maps.get("name"));
-                intent.putExtra("name",(String)maps.get("name"));
-                //intent.putExtra("img",(String)maps.get("img"));
-                intent.putExtra("Birthday",(String)maps.get("Birthday"));
-                intent.putExtra("Height",(String)maps.get("Height"));
-                intent.putExtra("Introduce",(String)maps.get("Introduce"));
-                intent.putExtra("Manifesto",(String)maps.get("Manifesto"));
-                intent.putExtra("Occupation",(String)maps.get("Occupation"));
-                intent.putExtra("Site",(String)maps.get("Site"));
+
+                intent.putExtra("id",(String)maps.get("id"));
+//                Bitmap bitmap = stringToBitmap((String)maps.get("img"));
+//                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//                bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+//                byte[] b = baos.toByteArray();
+//                intent.putExtra("img",b);
+
+//                 intent.putExtra("name",(String)maps.get("name"));
+//                intent.putExtra("Birthday",(String)maps.get("Birthday"));
+//                intent.putExtra("Height",(String)maps.get("Height"));
+//                intent.putExtra("Introduce",(String)maps.get("Introduce"));
+//                intent.putExtra("Manifesto",(String)maps.get("Manifesto"));
+//                intent.putExtra("Occupation",(String)maps.get("Occupation"));
+//                intent.putExtra("Site",(String)maps.get("Site"));
                 startActivity(intent);
 
             }
@@ -183,6 +193,7 @@ public class Fragment1 extends Fragment {
 
                     for (int i = 0; i < userBeans.size(); i++) {
                         Map<String, Object> map = new HashMap<String, Object>();
+                        map.put("id", userBeans.get(i).getUserid());
                         map.put("name", userBeans.get(i).getNickname());
                         map.put("img", userBeans.get(i).getPortrait());
                         map.put("Birthday", userBeans.get(i).getBirthday());
@@ -221,6 +232,20 @@ public class Fragment1 extends Fragment {
         return response.body().string();
     }
 
-
+    /**
+     * 将字符串转换成Bitmap类型
+     * */
+    public Bitmap stringToBitmap(String string) {
+        Bitmap bitmap = null;
+        try {
+            byte[] bitmapArray;
+            bitmapArray = Base64.decode(string, Base64.URL_SAFE);
+            bitmap = BitmapFactory.decodeByteArray(bitmapArray, 0,
+                    bitmapArray.length);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bitmap;
+    }
 
 }

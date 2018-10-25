@@ -65,7 +65,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         holder.mText.setText(friendinfo.get(position).getNickname());
         holder.ttext.setText(friendinfo.get(position).getManifesto());
         Picasso.with(mcontext)
-                .load("http://"+mcontext.getResources().getString(R.string.netip)+":8080/Findshe/images/"+friendinfo.get(position).getPortrait().trim()+".jpg")
+                .load("http://"+mcontext.getResources().getString(R.string.netip)+":8080/XunTa/images/"+friendinfo.get(position).getPortrait().trim()+".jpg")
                 .into(holder.touxiang);
        // Picasso.with(mcontext).load("http://"+mcontext.getResources().getString(R.string.netip)+":8080/Findshe/images/"+friendinfo.get(position).getPortrait()+".jpg").into(holder.touxiang);
 

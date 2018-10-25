@@ -108,9 +108,10 @@ public class Fragment2 extends Fragment {
 
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences("getuser", Context.MODE_PRIVATE);
 
+                System.out.println(sharedPreferences.getString("name","13795971992")+"             "+"http://" + getResources().getString(R.string.netip) + ":8080/Findshe/GetFriendsServlet");
                 OkHttpUtils
                         .get()
-                        .url("http://" + getResources().getString(R.string.netip) + ":8080/Findshe/GetFriendsServlet")
+                        .url("http://" + getResources().getString(R.string.netip) + ":8080/XunTa/GetFriendsServlet")
                         .addParams("id",sharedPreferences.getString("name","13795971992"))
                         .build()
                         .execute(new StringCallback() {
@@ -142,11 +143,10 @@ public class Fragment2 extends Fragment {
                                         }
                                     });
 
-
                                     mAdapter.setOnItemLongClickListener(new MyRecyclerViewAdapter.OnItemLongClickListener() {
                                         @Override
                                         public void onItemLongClick(View view, final int position) {
-                                            final String[] items3 = new String[]{"查看详细信息", "查看亲密度", "不再关注", "举报"};//创建item
+                                            final String[] items3 = new String[]{"查看详细信息", "查看亲密度"};//创建item
                                             AlertDialog alertDialog3 = new AlertDialog.Builder(getActivity())
                                                     //.setTitle("你要对此进行")
                                                     //.setIcon(R.mipmap.ic_launcher)

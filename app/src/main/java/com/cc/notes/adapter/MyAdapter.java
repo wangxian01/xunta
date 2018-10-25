@@ -60,9 +60,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         avatarImageView.setImageBitmap(bitmap);
         ((MyViewHolder) holder).tv_name.setText((String)map.get("name"));
 //        ((MyViewHolder) holder).tv_name.setText(Homeinfo.name[list.get(position)]);
-//        avatarTextView1.setText( Homeinfo.age[list.get(position)]);
-//        avatarTextView2.setText(Homeinfo.hangye[list.get(position)]);
-//        avatarTextView3.setText(Homeinfo.xingzuo[list.get(position)]);
+        avatarTextView1.setText( (String)map.get("Birthday")+" ♀");
+        avatarTextView2.setText((String)map.get("Height0")+" cm");
+        avatarTextView3.setText((String)map.get("Occupation"));
 //        avatarImageView.setImageResource(list.get(position));
         if (onItemClickListener!=null){
             holder.itemView.setOnClickListener(new View.OnClickListener() {

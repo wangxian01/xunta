@@ -65,7 +65,7 @@ public class SocketService extends Service {
                     //根据手机号码查询谁上线了
                     OkHttpUtils
                             .get()
-                            .url("http://" + getResources().getString(R.string.netip) + ":8080/Findshe/nicknameServlet")
+                            .url("http://" + getResources().getString(R.string.netip) + ":8080/XunTa/nicknameServlet")
                             .addParams("guanjianzi", shoujihao)
                             .build()
                             .execute(new StringCallback() {

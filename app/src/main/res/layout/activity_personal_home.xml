@@ -229,7 +229,6 @@
                 android:layout_marginLeft="10dp"
                 android:id="@+id/personal_scimg"
                 android:layout_gravity="center|left"
-                android:src="@drawable/shoucang"
                 android:layout_width="20dp"
                 android:layout_height="20dp" />
 
@@ -239,14 +238,13 @@
                 android:layout_gravity="center|left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="我的收藏"/>
+                android:text=""/>
 
             <ImageView
                 android:id="@+id/personal_myscnext"
                 android:layout_alignParentRight="true"
                 android:gravity="center|right"
                 android:layout_marginRight="20dp"
-                android:src="@drawable/tiaozhuan"
                 android:layout_width="20dp"
                 android:layout_height="18dp" />
         </RelativeLayout>

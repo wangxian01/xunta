@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:Android="http://schemas.android.com/apk/res-auto"
     tools:ignore="Orientation">
 
     <ScrollView
@@ -17,11 +17,11 @@
         android:layout_height="match_parent">
 
         <ImageView
+            android:adjustViewBounds="true"
             android:id="@+id/image_top1"
             android:layout_width="match_parent"
             android:scaleType="centerCrop"
-            android:layout_height="250dp"
-            android:src="@drawable/img_avatar_06" />
+            android:layout_height="250dp" />
 
 
         <TextView
@@ -44,7 +44,7 @@
             android:layout_marginLeft="10dp"
             android:background="@drawable/shape_age"
             android:gravity="center"
-            android:text="♀ 23"
+            android:text=""
             android:textColor="#FFFFFF"
             android:textSize="14sp" />
 
@@ -58,7 +58,7 @@
             android:layout_toRightOf="@id/tv_age1"
             android:background="@drawable/shape_constellation"
             android:gravity="center"
-            android:text="狮子座"
+            android:text=""
             android:textColor="#FFFFFF"
             android:textSize="14sp" />
 
@@ -103,7 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="星座"
+            android:text="身高"
             android:layout_alignTop="@+id/line1"
             android:layout_marginTop="65dp"
             android:textColor="#d3c8c8"/>
@@ -190,7 +190,7 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="个性签名"/>
+                android:text="个人简介"/>
 
         </LinearLayout>
 

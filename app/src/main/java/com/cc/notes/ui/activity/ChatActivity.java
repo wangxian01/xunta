@@ -118,7 +118,7 @@ public class ChatActivity extends AppCompatActivity {
         //根据你选择的用户昵称查询到该用户的id，传给接收对象
         OkHttpUtils
                 .get()
-                .url("http://" + getResources().getString(R.string.netip) + ":8080/Findshe/nicknameServlet")
+                .url("http://" + getResources().getString(R.string.netip) + ":8080/XunTa/nicknameServlet")
                 .addParams("guanjianzi", getIntent().getStringExtra("nickname"))
                 .build()
                 .execute(new StringCallback() {

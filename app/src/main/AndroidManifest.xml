@@ -47,10 +47,13 @@
             android:name="com.cc.notes.ui.activity.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-       <!-- <activity android:name="com.cc.notes.ui.activity.FirsthomeActivity">-->
+
+        <activity android:name="com.cc.notes.ui.activity.FirsthomeActivity">
+
+        </activity>
 
       <!--  </activity>-->
-        <activity android:name="com.cc.notes.ui.activity.FirsthomeActivity">
+        <activity android:name="com.cc.notes.ui.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -84,6 +87,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity android:name="com.cc.notes.PersonalCenter.ChangeIntroduce"></activity>
+        <service
+            android:name="com.cc.notes.Service.SocketService"
+            tools:ignore="InnerclassSeparator" />
+
     </application>
 
 </manifest>
